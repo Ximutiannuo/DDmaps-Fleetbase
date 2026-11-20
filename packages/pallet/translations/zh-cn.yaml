@@ -1,0 +1,310 @@
+pallet:
+  extension-name: 托盘
+
+resource:
+  inventory: 库存
+  products: 产品
+  purchase-orders: 采购订单
+  sales-orders: 销售订单
+  suppliers: 供应商
+  warehouses: 仓库
+  audits: 审计追踪
+  reports: 报表
+  batches: 批次
+
+common:
+  active: 启用
+  address: 地址
+  city: 城市
+  country: 国家
+  description: 描述
+  edit-resource-name: 编辑{name}
+  email: 邮箱
+  height: 高度
+  id: ID
+  inactive: 未启用
+  internal-id: 内部ID
+  length: 长度
+  metadata: 元数据
+  name: 名称
+  no: 否
+  notes: 备注
+  phone: 电话
+  postal-code: 邮编
+  select-status: 选择状态
+  state: 省/州
+  status: 状态
+  street1: 街道1
+  street2: 街道2
+  weight: 重量
+  width: 宽度
+  yes: 是
+  save: 保存
+  cancel: 取消
+  delete: 删除
+  edit: 编辑
+  view: 查看
+  create: 创建
+  search: 搜索
+  filter: 筛选
+  export: 导出
+  import: 导入
+  actions: 操作
+  created-at: 创建时间
+  updated-at: 更新时间
+  clear_filters: 清除筛选
+  no-records: 未找到记录
+  loading: 加载中...
+
+product:
+  sections:
+    details: 详情
+    dimensions: 尺寸
+    inventory-info: 库存信息
+    inventory-settings: 库存设置
+    pricing: 定价
+  fields:
+    available-stock: 可用库存
+    barcode: 条形码
+    category: 分类
+    declared-value: 申报价值
+    is-lot-tracked: 批次追踪
+    is-perishable: 易腐品
+    is-serialized: 序列化
+    lot-tracked: 追踪批次号
+    name-placeholder: 产品名称
+    perishable: 易腐品
+    perishable-item: 易腐物品
+    reorder-point: 再订货点
+    reorder-quantity: 再订货数量
+    requires-qc: 需要质检
+    requires-quality-check: 需要质量检查
+    sale-price: 售价
+    select-category: 选择分类
+    select-supplier: 选择供应商
+    serialized: 序列化
+    shelf-life-days: 保质期（天）
+    sku: SKU
+    supplier: 供应商
+    total-stock: 总库存
+    track-lot-numbers: 追踪批次号
+    track-serial-numbers: 追踪序列号
+    tracking: 追踪
+    unit-cost: 单位成本
+    unit-price: 单价
+
+inventory:
+  sections:
+    details: 详情
+    location: 位置
+    tracking: 追踪
+  fields:
+    available-quantity: 可用数量
+    batch-number: 批次号
+    bin-location: 库位
+    expiry-date: 过期日期
+    last-counted: 最近盘点
+    lot-number: 批次号
+    max-quantity: 最大数量
+    min-quantity: 最小数量
+    product: 产品
+    quantity: 数量
+    received-at: 收货时间
+    reorder-point: 再订货点
+    reserved-quantity: 已预留数量
+    select-bin: 选择库位
+    select-product: 选择产品
+    select-supplier: 选择供应商
+    select-warehouse: 选择仓库
+    select-zone: 选择区域
+    serial-number: 序列号
+    supplier: 供应商
+    unit-cost: 单位成本
+    uom: 计量单位
+    warehouse: 仓库
+    zone: 区域
+
+warehouse:
+  sections:
+    address: 地址
+    capacity: 容量
+    details: 详情
+  fields:
+    capacity: 容量
+    code: 仓库代码
+    current-utilization: 当前使用率
+    email: 邮箱
+    floor-area: 占地面积（平方米）
+    is-3pl: 第三方物流
+    is-active: 启用
+    is-default: 默认仓库
+    name: 仓库名称
+    phone: 电话
+    status: 状态
+    third-party-logistics: 第三方物流（3PL）
+    timezone: 时区
+    total-bins: 库位总数
+    total-docks: 装卸口总数
+    total-zones: 区域总数
+    type: 仓库类型
+    utilization: 使用率
+
+supplier:
+  sections:
+    details: 详情
+  fields:
+    name: 供应商名称
+    select-type: 选择供应商类型
+    type: 供应商类型
+
+purchase-order:
+  sections:
+    details: 详情
+    line-items: 行项目
+    receive: 收货
+  fields:
+    expected-delivery: 预计交货日期
+    order-number: 订单编号
+    select-supplier: 选择供应商
+    select-warehouse: 选择仓库
+    supplier: 供应商
+    warehouse: 仓库
+    item-count: 项目数
+    total-value: 总价值
+  actions:
+    receive: 收货
+    view: 查看采购订单
+    edit: 编辑采购订单
+    delete: 删除采购订单
+  receive:
+    title: 采购订单收货
+    summary: 订单摘要
+    po-number: 采购订单号
+    supplier: 供应商
+    reference: 参考号
+    expected-delivery: 预计交货
+    total-items: 总项目数
+    receive-items: 收货项目
+    ordered: 订购数量
+    previously-received: 已收数量
+    outstanding: 待收数量
+    receive-now: 本次收货
+    lot-number: 批次号（可选）
+    expiry-date: 过期日期（可选）
+    notes: 备注（可选）
+    submit: 确认收货
+    all-received: 此采购订单的所有项目已收货完毕。
+    success: 采购订单收货成功，库存已更新。
+    error: 收货失败，请重试。
+  line-items:
+    title: 行项目
+    add: 添加行项目
+    product: 产品
+    sku: SKU
+    quantity: 数量
+    quantity-received: 已收数量
+    unit-price: 单价
+    total-price: 总价
+    status: 状态
+    notes: 备注
+    lot-number: 批次号
+    serial-number: 序列号
+    expiry-date: 过期日期
+    unit-of-measure: 计量单位
+
+sales-order:
+  sections:
+    details: 详情
+    line-items: 行项目
+    fulfill: 履约
+  fields:
+    customer: 客户
+    expected-shipment: 预计发货日期
+    order-number: 订单编号
+    select-customer: 选择客户
+    select-warehouse: 选择仓库
+    warehouse: 仓库
+    item-count: 项目数
+    total-value: 总价值
+  actions:
+    fulfill: 履约
+    view: 查看销售订单
+    edit: 编辑销售订单
+    delete: 删除销售订单
+  fulfill:
+    title: 销售订单履约
+    summary: 订单摘要
+    so-number: 销售订单号
+    customer-ref: 客户参考号
+    reference: 参考号
+    expected-delivery: 预计交货
+    total-items: 总项目数
+    fulfill-items: 履约项目
+    ordered: 订购数量
+    previously-fulfilled: 已履约数量
+    outstanding: 待履约数量
+    fulfill-now: 本次履约
+    notes: 备注（可选）
+    status: 状态
+    submit: 确认履约
+    fefo-notice: 库存将按FEFO（先过期先出）原则扣减，除非指定特定库存记录。
+    all-fulfilled: 此销售订单的所有项目已履约完毕。
+    success: 销售订单履约成功，库存已扣减。
+    error: 履约失败，请重试。
+  line-items:
+    title: 行项目
+    add: 添加行项目
+    product: 产品
+    sku: SKU
+    quantity: 数量
+    quantity-fulfilled: 已履约数量
+    unit-price: 单价
+    total-price: 总价
+    status: 状态
+    notes: 备注
+    lot-number: 批次号
+    serial-number: 序列号
+    unit-of-measure: 计量单位
+
+batch:
+  sections:
+    details: 详情
+  fields:
+    batch-number: 批次号
+    expiry-date: 过期日期
+    product: 产品
+    production-date: 生产日期
+    select-product: 选择产品
+    select-supplier: 选择供应商
+    supplier: 供应商
+
+audit:
+  title: 审计追踪
+  search_placeholder: 搜索审计事件...
+  all_events: 所有事件
+  filter_event_type: 事件类型
+  no_records: 未找到审计事件
+  sections:
+    details: 详情
+  fields:
+    event-type: 事件类型
+    action: 操作
+    subject-type: 对象类型
+    subject-id: 对象ID
+    performed-by: 操作人
+    reason: 原因
+    comments: 评论
+    meta: 事件数据
+    date: 日期
+    scheduled-at: 计划时间
+    completed-at: 完成时间
+  event-types:
+    stock_adjustment: 库存调整
+    cycle_count: 循环盘点
+    po_received: 采购订单收货
+    so_fulfilled: 销售订单履约
+    stock_transfer: 库存调拨
+    inventory_receive: 库存收货
+    batch_created: 批次创建
+    product_created: 产品创建
+    warehouse_created: 仓库创建

@@ -1,0 +1,59 @@
+<div class="cs-map-view">
+    <div class="cs-drawing-toolbar">
+        <button type="button" disabled={{@mutationBusy}} class="text-sm bg-blue-600 text-white rounded px-3 py-1.5 hover:bg-blue-700" {{on "click" this.startDrawSegment}}>
+            画新路段
+        </button>
+        <button type="button" disabled={{@mutationBusy}} class="text-sm text-gray-900 bg-white border border-gray-400 rounded px-3 py-1.5 hover:bg-gray-50" {{on "click" this.startDrawLine}}>
+            画禁行线
+        </button>
+        <button type="button" disabled={{@mutationBusy}} class="text-sm text-gray-900 bg-white border border-gray-400 rounded px-3 py-1.5 hover:bg-gray-50" {{on "click" this.startDrawPolygon}}>
+            画禁行面
+        </button>
+        {{#if this.drawMode}}
+            {{#if (eq this.drawPurpose "segment")}}
+                <span class="text-xs text-blue-700 font-medium">沿地图描画路段：点击加点，至少 2 点后点完成</span>
+            {{else}}
+                <span class="text-xs text-orange-700 font-medium">点击地图绘制{{if (eq this.drawMode "Polygon") "禁行区域" "禁行线"}}，至少 {{if (eq this.drawMode "Polygon") "3" "2"}} 点后点完成</span>
+            {{/if}}
+            <button type="button" disabled={{@mutationBusy}} class="text-sm bg-orange-500 text-white rounded px-3 py-1.5" {{on "click" this.finishDraw}}>
+                完成
+            </button>
+            <button type="button" disabled={{@mutationBusy}} class="text-sm text-gray-900 bg-white border border-gray-400 rounded px-3 py-1.5 hover:bg-gray-50" {{on "click" this.cancelDraw}}>
+                取消绘制
+            </button>
+        {{/if}}
+        {{#if this.isEditingGeometry}}
+            <span class="text-xs text-orange-700 font-medium">编辑几何：拖动圆点改端点/长短，点击线段添加拐点</span>
+            <button type="button" disabled={{@mutationBusy}} class="text-sm bg-green-600 text-white rounded px-3 py-1.5" {{on "click" this.saveEditGeometry}}>
+                保存几何
+            </button>
+            <button type="button" disabled={{@mutationBusy}} class="text-sm text-gray-900 bg-white border border-gray-400 rounded px-3 py-1.5 hover:bg-gray-50" {{on "click" this.cancelEditGeometry}}>
+                取消
+            </button>
+        {{/if}}
+    </div>
+    <div class="cs-map-canvas">
+    <div
+        class="cs-leaflet-map"
+        {{did-insert this.setupMap}}
+        {{did-update this.redrawAll @segments @revision @avoidAreas @navigatingEntries @driverLocations @junctions @trafficRoads @importCandidates @importPreview @showRoadLayer @showJunctionLayer @showAvoidLayer @showDriverRoutes @showNavigationLayer @selectedDriverRoute}}
+        {{did-update this.redrawSegments @selectedSegmentUuid @selectedTrafficTargetKey}}
+        {{did-update this.focusSelection @focusRequest}}
+        {{did-update this.resetAreaViewport @areaUuid}}
+        {{did-update this.consumeDrawSegmentRequest @drawSegmentRequest}}
+        {{did-update this.consumeEditRequest @editingSegment}}
+    ></div>
+    <div class="cs-map-rotation leaflet-bar" role="group" aria-label="地图旋转控制">
+        <button type="button" class="cs-map-rotate-drag {{if this.isRotating "is-rotating"}}"
+            aria-label="拖动旋转地图" title="左右拖动可连续旋转；方向键也可调整"
+            {{on "pointerdown" this.startRotationDrag}} {{on "pointermove" this.moveRotationDrag}}
+            {{on "pointerup" this.endRotationDrag}} {{on "pointercancel" this.endRotationDrag}}
+            {{on "lostpointercapture" this.endRotationDrag}} {{on "keydown" this.rotateWithKeyboard}}>↻</button>
+        <input type="range" class="cs-map-angle-slider" min="0" max="360" step="any"
+            value={{this.mapBearing}} aria-label="地图旋转角度" aria-valuetext={{concat this.bearingLabel " 度"}}
+            title="拖动滑杆连续调整地图方向" {{on "input" this.changeMapBearing}} />
+        <button type="button" class="cs-map-north" aria-label="恢复地图正北" title="平滑恢复正北"
+            {{on "click" this.resetMapBearing}}><span>N</span><small>{{this.bearingLabel}}°</small></button>
+    </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="cs-nav-panel">
+    {{#if this.currentStep}}
+        <div class="cs-nav-current">
+            <div class="cs-nav-maneuver">
+                <span class="cs-nav-icon">{{this.maneuverInfo.icon}}</span>
+                <span class="cs-nav-label">{{this.maneuverInfo.label}}</span>
+            </div>
+            <div class="cs-nav-distance">{{this.currentStepDistanceLabel}}</div>
+        </div>
+        {{#if this.currentStep.name}}
+            <div class="cs-nav-road-name">{{this.currentStep.name}}</div>
+        {{/if}}
+    {{/if}}
+
+    <div class="cs-nav-summary">
+        <span class="cs-nav-remaining">剩余 {{this.remainingDistanceLabel}} · {{this.remainingDurationLabel}}</span>
+    </div>
+
+    <div class="cs-nav-progress-bar">
+        <div class="cs-nav-progress-fill" style="width: {{this.progressPercent}}%"></div>
+    </div>
+
+    {{#if this.nextStepLabel}}
+        <div class="cs-nav-next-step">
+            下一步: {{this.nextStepLabel}}
+        </div>
+    {{/if}}
+
+    <button type="button" {{on "click" this.cancel}} class="cs-nav-cancel-btn">
+        取消导航
+    </button>
+</div>

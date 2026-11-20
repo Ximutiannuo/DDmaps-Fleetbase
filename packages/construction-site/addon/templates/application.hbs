@@ -1,0 +1,6 @@
+<div class="construction-site-app">
+    {{#if this.session.isAuthenticated}}
+        <div class="flex justify-end px-6 pt-3"><NotificationBell /></div>
+    {{/if}}
+    {{outlet}}
+</div>

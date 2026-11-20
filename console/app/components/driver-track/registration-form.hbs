@@ -1,0 +1,45 @@
+<div class="max-w-md mx-auto p-6">
+    <h1 class="text-2xl font-bold mb-6 text-center">工地进场登记</h1>
+
+    {{#if this.error}}
+        <div class="bg-red-100 text-red-700 p-3 rounded mb-4 text-sm">{{this.error}}</div>
+    {{/if}}
+
+    <form {{on "submit" this.submit}} class="space-y-4">
+        <div>
+            <label class="block text-sm font-medium mb-1">车牌号 *</label>
+            <input type="text" value={{this.plateNumber}} {{on "input" this.setPlateNumber}} placeholder="京A12345" class="w-full border rounded p-2" required />
+        </div>
+        <div>
+            <label class="block text-sm font-medium mb-1">车辆类型</label>
+            <select {{on "change" this.setCategory}} class="w-full border rounded p-2">
+                <option value="earthwork">土方/渣土车</option>
+                <option value="concrete">混凝土车</option>
+                <option value="material_transport">材料运输车</option>
+                <option value="machinery">工程机械</option>
+                <option value="management">管理车辆</option>
+            </select>
+        </div>
+        <div>
+            <label class="block text-sm font-medium mb-1">司机姓名 *</label>
+            <input type="text" value={{this.driverName}} {{on "input" this.setDriverName}} class="w-full border rounded p-2" required />
+        </div>
+        <div>
+            <label class="block text-sm font-medium mb-1">手机号 *</label>
+            <input type="tel" value={{this.driverPhone}} {{on "input" this.setDriverPhone}} placeholder="13800138000" class="w-full border rounded p-2" required />
+        </div>
+        <div>
+            <label class="block text-sm font-medium mb-1">用途</label>
+            <select {{on "change" this.setPurpose}} class="w-full border rounded p-2">
+                <option value="运料">运料</option>
+                <option value="卸料">卸料</option>
+                <option value="施工">施工</option>
+                <option value="管理">管理</option>
+                <option value="其他">其他</option>
+            </select>
+        </div>
+        <button type="submit" disabled={{this.submitting}} class="w-full bg-blue-600 text-white rounded p-3 font-medium disabled:opacity-50">
+            {{if this.submitting '提交中...' '登记并开始追踪'}}
+        </button>
+    </form>
+</div>

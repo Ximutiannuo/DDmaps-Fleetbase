@@ -1,0 +1,28 @@
+<div class="p-6">
+    <h1 class="text-2xl font-bold mb-6">工地调度总览</h1>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+        <div class="bg-white rounded-lg shadow p-4">
+            <p class="text-sm text-gray-500">道路总数</p>
+            <p class="text-3xl font-bold text-blue-600">{{@model.roads.length}}</p>
+        </div>
+        <div class="bg-white rounded-lg shadow p-4">
+            <p class="text-sm text-gray-500">在场车辆</p>
+            <p class="text-3xl font-bold text-green-600">{{@model.activeEntries.length}}</p>
+        </div>
+        <div class="bg-white rounded-lg shadow p-4">
+            <p class="text-sm text-gray-500">活跃事件</p>
+            <p class="text-3xl font-bold text-orange-600">{{@model.activeEvents.length}}</p>
+        </div>
+        <div class="bg-white rounded-lg shadow p-4">
+            <p class="text-sm text-gray-500">未读通知</p>
+            <p class="text-3xl font-bold text-red-600">{{@model.unreadNotifications.length}}</p>
+        </div>
+    </div>
+    <div class="flex gap-4 flex-wrap">
+        <LinkTo @route="live-map" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">实时地图</LinkTo>
+        <LinkTo @route="roads" class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700">道路管理</LinkTo>
+        <LinkTo @route="road-events" class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700">道路事件</LinkTo>
+        <LinkTo @route="construction" class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700">施工活动</LinkTo>
+        <LinkTo @route="notifications" class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700">通知中心</LinkTo>
+    </div>
+</div>

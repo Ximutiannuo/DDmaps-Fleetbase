@@ -1,0 +1,16 @@
+<div class="min-h-screen bg-gray-50">
+    {{#if this.isLoading}}
+        <div class="flex items-center justify-center h-screen">
+            <div class="animate-spin inline-block w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full"></div>
+        </div>
+    {{else if this.sessionError}}
+        <div class="p-6 text-center" role="alert">
+            <p>{{this.sessionError}}</p>
+            <button type="button" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded" {{on "click" this.startSessionCheck}}>重新连接</button>
+        </div>
+    {{else if this.hasActiveSession}}
+        <DriverTrack::TrackingView @onExited={{this.onExited}} />
+    {{else}}
+        <DriverTrack::RegistrationForm @onRegistered={{this.onRegistered}} />
+    {{/if}}
+</div>

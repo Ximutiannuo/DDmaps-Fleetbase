@@ -1,0 +1,9 @@
+<div class="min-h-screen bg-gray-50">
+    {{#if this.sessionError}}
+        <p class="p-6" role="alert">{{this.sessionError}}</p>
+    {{else if this.hasActiveSession}}
+        <Mobile::TrackingView @onExited={{fn (mut this.hasActiveSession) false}} />
+    {{else}}
+        <Mobile::RegistrationForm @onRegistered={{fn (mut this.hasActiveSession) true}} />
+    {{/if}}
+</div>

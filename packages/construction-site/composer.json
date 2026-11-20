@@ -1,0 +1,78 @@
+{
+    "name": "fleetbase/construction-site-api",
+    "version": "0.0.1",
+    "description": "Construction Site Management Extension for Fleetbase",
+    "keywords": [
+        "fleetbase",
+        "fleetbase-extension",
+        "construction",
+        "construction-site",
+        "road construction",
+        "site management",
+        "civil engineering"
+    ],
+    "license": "AGPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Fleetbase Pte Ltd.",
+            "email": "hello@fleetbase.io"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "fleetbase/core-api": "*",
+        "fleetbase/fleetops-api": "*"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.34.1",
+        "nunomaduro/collision": "^5.11.0|^6.4.0",
+        "pestphp/pest": "^1.22.6",
+        "phpstan/phpstan": "^1.10.38",
+        "symfony/var-dumper": "^5.4.29"
+    },
+    "autoload": {
+        "psr-4": {
+            "Fleetbase\\ConstructionSite\\": "server/src/",
+            "Fleetbase\\ConstructionSite\\Database\\Seeders\\": "server/database/seeders/",
+            "Fleetbase\\ConstructionSite\\Seeds\\": "server/database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Fleetbase\\ConstructionSite\\Database\\Factories\\": "server/database/factories/",
+            "Fleetbase\\ConstructionSite\\Tests\\": "server/tests/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Fleetbase\\ConstructionSite\\Providers\\ConstructionSiteServiceProvider"
+            ]
+        },
+        "fleetbase": {
+            "sandbox-migrations": false
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "preferred-install": "dist",
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
+        }
+    },
+    "scripts": {
+        "lint": "php-cs-fixer fix -v --dry-run",
+        "lint:fix": "php-cs-fixer fix -v",
+        "test:lint": "@lint",
+        "test:types": "vendor/bin/phpstan analyse --ansi --memory-limit=0",
+        "test:unit": "vendor/bin/pest --colors=always",
+        "test": [
+            "@test:lint",
+            "@test:types",
+            "@test:unit"
+        ]
+    }
+}

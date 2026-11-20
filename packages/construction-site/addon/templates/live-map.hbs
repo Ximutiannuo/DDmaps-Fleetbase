@@ -1,0 +1,449 @@
+<div class="construction-site-live-map {{if this.panelCollapsed "panel-collapsed"}}" style={{concat "--cs-panel-width:" this.rightWidth "px;"}} {{did-insert this.setupLayout}} {{will-destroy this.teardownLayout}}>
+<header class="cs-page-header"><div><h1>实时地图</h1><p>工地调度 · 道路状态与车辆协同</p></div><div class="cs-header-metrics"><span>{{this.trafficRoads.length}} 路段</span><span>{{this.trafficJunctions.length}} 交汇点</span><span>{{this.driverLocations.length}} 车辆定位</span></div></header>
+<div class="cs-toolbar">
+<label class="cs-area-select"><span>GCC 区域</span><select aria-label="GCC 区域" disabled={{this.roadMutationBusy}} {{on "change" this.setSelectedServiceArea}}>{{#each this.serviceAreas as |area|}}<option value={{area.id}} selected={{eq this.selectedServiceAreaUuid area.id}}>{{area.name}}</option>{{/each}}</select></label>
+<button type="button" class="cs-primary" title="导入当前 GCC 的可用道路并自动分段，限制通行道路默认封闭" disabled={{not this.canGenerateRoadSections}} {{on "click" this.generateRoadSections}}>自动生成路段</button>
+<button type="button" class="cs-secondary" disabled={{not this.canPreviewRoadImport}} {{on "click" this.previewRoadImport}}>{{if this.isLoadingRoadImport "正在获取道路…" "从地图导入道路"}}</button>
+<details class="cs-layer-menu"><summary>图层</summary><div>{{#each this.mapLayerOptions as |layer|}}<label><input type="checkbox" checked={{layer.visible}} {{on "change" (fn this.toggleMapLayer layer.key)}} />{{layer.label}}</label>{{/each}}</div></details>
+<button type="button" class="cs-secondary" {{on "click" this.toggleFullscreen}}>{{if this.isMapFullscreen "退出全屏" "全屏地图"}}</button>
+<button type="button" class="cs-secondary cs-panel-toggle" aria-expanded={{not this.panelCollapsed}} aria-controls="cs-operation-panel" {{on "click" this.togglePanel}}>{{if this.panelCollapsed "展开操作面板" "收起操作面板"}}</button>
+</div>
+<div class="cs-workspace"><section class="cs-map-stage" aria-label="实时交通地图">
+            <LiveMapView
+                @segments={{@model.segments}}
+                @avoidAreas={{this.avoidAreas}}
+                @navigatingEntries={{this.navigatingEntries}}
+                @revision={{this.mapRevision}}
+                @onSelectTraffic={{this.selectTraffic}}
+                @selectedTrafficTargetKey={{this.selectedTrafficTargetKey}}
+                @trafficRoads={{this.trafficRoads}}
+                @junctions={{this.trafficJunctions}}
+                @importPreview={{this.roadImportPreview}}
+                @importCandidates={{this.roadImportMapCandidates}}
+                @onSelectImportRoad={{this.toggleRoadImport}}
+                @onSelectJunction={{this.selectTraffic}}
+                @onCreateAvoidArea={{this.createAvoidArea}}
+                @onDrawSegmentFinish={{this.onDrawSegmentFinish}}
+                @drawSegmentRequest={{this.drawSegmentRequest}}
+                @editingSegment={{this.editingSegmentRecord}}
+                @onSaveGeometry={{this.saveEditedGeometry}}
+                @onCancelEditGeometry={{this.cancelEditGeometry}}
+                @showDriverRoutes={{this.showDriverRoutes}}
+                @driverLocations={{this.driverLocations}}
+                @selectedSegmentUuid={{this.selectedSegmentUuid}}
+                @showRoadLayer={{this.showRoadLayer}}
+                @showJunctionLayer={{this.showJunctionLayer}}
+                @showAvoidLayer={{this.showAvoidLayer}}
+                @showNavigationLayer={{this.showNavigationLayer}}
+                @selectedDriverRoute={{this.selectedDriverRoute}}
+                @focusTarget={{this.focusTarget}}
+                @focusRequest={{this.focusRequest}}
+                @onDrawModeChange={{this.onDrawModeChange}}
+                @mutationBusy={{this.roadMutationBusy}}
+                @areaUuid={{this.selectedServiceAreaUuid}}
+            />
+
+
+<div class="cs-map-legend"><span><i style="background:#94a3b8"></i>数据不足</span><span><i style="background:#22c55e"></i>通畅</span><span><i style="background:#eab308"></i>部分封闭</span><span><i style="background:#f97316"></i>施工</span><span><i style="background:#ef4444"></i>封闭</span></div>
+</section>
+{{#unless this.panelCollapsed}}
+<div class="cs-panel-resizer" role="separator" aria-label="调整操作面板宽度" aria-orientation="vertical" title="拖动调整操作面板宽度" {{on "mousedown" this.startRightResize}}></div>
+<aside id="cs-operation-panel" class="cs-operation-panel" aria-label="地图操作面板"><nav class="cs-panel-tabs" aria-label="操作面板分类">{{#each this.panelTabs as |tab|}}<button type="button" aria-pressed={{eq this.activePanel tab.key}} class={{if (eq this.activePanel tab.key) "is-active"}} {{on "click" (fn this.setActivePanel tab.key)}}>{{tab.label}}</button>{{/each}}</nav>
+<div class="cs-panel-content" {{did-insert this.setupPanel}} {{did-update this.resetPanelScroll this.activePanel this.selectedTrafficTargetKey this.selectedSegmentUuid this.roadDeletePrompt this.roadRestorePrompt}}>
+            {{#if this.canUndoSectionRemoval}}
+                <div role="status" class="mt-4 flex items-center gap-3 rounded border p-3 bg-gray-50 text-sm">
+                    <span>已删除：{{this.lastRemovedSection.name}}</span>
+                    <button type="button" class="text-blue-700 underline disabled:opacity-50" disabled={{this.roadMutationBusy}} {{on "click" (fn this.restoreRemovedSection this.lastRemovedSection)}}>撤销上次路段删除</button>
+                </div>
+            {{/if}}
+            {{#if this.roadDeletePrompt}}
+                <div role="region" aria-label="道路删除确认" class="mt-4 border-2 border-red-300 rounded-lg p-4 bg-red-50">
+                    <h3 class="font-bold text-red-800 mb-2">{{if (eq this.roadDeletePrompt.kind "section") "确认删除此路段" "确认删除整条道路"}}</h3>
+                    <p class="text-sm font-medium mb-2">{{this.roadDeletePrompt.name}}</p>
+                    {{#if (eq this.roadDeletePrompt.kind "section")}}
+                        <p class="text-sm mb-2">{{this.roadDeletePrompt.start}} → {{this.roadDeletePrompt.end}} · {{this.roadDeletePrompt.length}} 米</p>
+                        <p class="text-sm mb-3">仅将这一段移出路网，相邻路段会保留，司机导航将避开该段。删除后可撤销，也可从右侧“已删除路段”中恢复。临时施工可设置“施工”或“封闭”。</p>
+                    {{else}}
+                        <p class="text-sm mb-3">该道路的所有路段都会移出路网，司机导航将重新规划。只删除两个交汇点之间的一段，请在路况面板使用“删除此路段”。</p>
+                    {{/if}}
+                    <div class="flex gap-3">
+                        <button type="button" class="bg-red-600 text-white rounded px-4 py-2 disabled:opacity-50" disabled={{this.roadMutationBusy}} {{on "click" this.confirmRoadRemoval}}>{{if this.isDeletingRoad "删除中…" (if (eq this.roadDeletePrompt.kind "section") "确认删除此路段" "确认删除整条道路")}}</button>
+                        <button type="button" class="bg-white border border-gray-400 rounded px-4 py-2 disabled:opacity-50" disabled={{this.isDeletingRoad}} {{on "click" this.cancelRoadRemoval}}>取消删除</button>
+                    </div>
+                </div>
+            {{/if}}
+
+            {{#if this.roadRestorePrompt}}
+                <div role="region" aria-label="整条道路恢复确认" class="mt-4 border-2 border-blue-300 rounded-lg p-4 bg-blue-50">
+                    <h3 class="font-bold mb-2">确认恢复整条道路</h3>
+                    <p class="text-sm font-medium mb-2">{{this.roadRestorePrompt.name}}</p>
+                    <p class="text-sm mb-3">恢复原道路记录，保留原名称、路况设置和单行限制。曾单独删除的路段仍保持删除，可在“已删除路段”中恢复。恢复后司机端会更新路网并重新规划。</p>
+                    <div class="flex gap-3">
+                        <button type="button" class="bg-blue-600 text-white rounded px-4 py-2 disabled:opacity-50" disabled={{this.roadMutationBusy}} {{on "click" this.confirmRoadRestore}}>{{if this.isDeletingRoad "恢复中…" "确认恢复整条道路"}}</button>
+                        <button type="button" class="bg-white border rounded px-4 py-2" disabled={{this.isDeletingRoad}} {{on "click" this.cancelRoadRestore}}>取消恢复</button>
+                    </div>
+                </div>
+            {{/if}}
+
+
+{{#if (eq this.activePanel "traffic")}}
+{{#if (eq this.drawPurpose "avoid")}}<div class="cs-notice"><label>禁行原因<input aria-label="禁行原因" value={{this.avoidReason}} {{on "input" this.setAvoidReason}} placeholder="施工占道" /></label><p>在地图上描画禁行范围后点击完成。</p></div>{{/if}}
+            {{#if this.selectedTraffic}}
+                <div class="mt-4 border-2 border-blue-300 rounded-lg p-4 bg-blue-50">
+                    <div class="flex justify-between gap-2 mb-2">
+                        <h3 class="font-bold">路况编辑：{{this.selectedTrafficInfo.name}}</h3>
+                        <button type="button" class="text-sm text-gray-700" {{on "click" this.closeTraffic}}>关闭</button>
+                    </div>
+                    {{#if this.selectedTrafficInfo.road_segment_uuid}}
+                        <p class="text-sm text-blue-800 mb-2">范围：{{this.selectedTrafficInfo.start_label}} → {{this.selectedTrafficInfo.end_label}} · {{this.selectedTrafficInfo.length_meters}} 米。保存仅影响这一段。</p>
+                        <div class="flex flex-wrap gap-3 mb-3">
+
+                            <button type="button" class="bg-white text-blue-700 border border-gray-400 rounded px-3 py-2 text-sm disabled:opacity-50" disabled={{this.roadMutationBusy}} {{on "click" this.manageSelectedRoad}}>管理整条道路</button>
+                            <button type="button" class="bg-white text-blue-700 border border-gray-400 rounded px-3 py-2 text-sm disabled:opacity-50" disabled={{this.roadMutationBusy}} {{on "click" this.renameSelectedRoad}}>修改道路名称</button>
+                        </div>
+                        {{#if this.isRenameMode}}
+                            <div class="flex gap-2 items-center flex-wrap mb-3">
+                                <label class="text-sm">道路名称 <input aria-label="道路名称" maxlength="255" class="border rounded px-2 py-1 bg-white text-gray-900" value={{this.renameValue}} {{on "input" this.setRenameValue}} /></label>
+                                <button type="button" class="bg-blue-600 text-white rounded px-3 py-1" disabled={{this.roadMutationBusy}} {{on "click" this.saveRename}}>{{if this.isRenaming "保存中…" "保存道路名称"}}</button>
+                                <button type="button" class="border rounded px-3 py-1 bg-white" disabled={{this.isRenaming}} {{on "click" this.cancelRename}}>取消改名</button>
+                                <p class="text-xs text-gray-600 w-full">名称属于整条道路，所有分段和交汇点标签会同步更新；下方路况设置仅影响当前选中路段。</p>
+                            </div>
+                        {{/if}}
+                    {{/if}}
+                    <p class="text-sm mb-3">当前 {{this.selectedTrafficInfo.status_label}} · {{this.selectedTrafficInfo.congestion_label}} · 有效司机 {{this.selectedTrafficInfo.driver_count}} 辆
+                        {{#unless (eq this.selectedTrafficInfo.average_speed_kmh null)}} · 平均 {{this.selectedTrafficInfo.average_speed_kmh}} km/h{{/unless}}
+                    </p>
+                    <p class="text-xs text-gray-600 mb-3">{{this.selectedTrafficInfo.data_status_label}} · {{this.selectedObservationLabel}}。自动判定只采用最近 90 秒的有效定位；数据不足时按基础通行时间估算。</p>
+                    <div class="grid grid-cols-1  gap-3">
+                        <label class="text-sm">通行状态
+                            <select aria-label="路况通行状态" class="w-full border rounded p-2 bg-white text-gray-900" {{on "change" (fn this.changeTrafficField "status")}}>
+                                <option value="open" selected={{eq this.trafficForm.status "open"}}>可通行</option>
+                                <option value="partial" selected={{eq this.trafficForm.status "partial"}}>部分封闭（减速通行）</option>
+                                <option value="construction" selected={{eq this.trafficForm.status "construction"}}>施工（禁止通行）</option>
+                                <option value="closed" selected={{eq this.trafficForm.status "closed"}}>封闭（禁止通行）</option>
+                            </select>
+                        </label>
+                        <label class="text-sm">拥堵判定方式
+                            <select aria-label="拥堵判定方式" class="w-full border rounded p-2 bg-white text-gray-900" {{on "change" (fn this.changeTrafficField "congestion_mode")}}>
+                                <option value="auto" selected={{eq this.trafficForm.congestion_mode "auto"}}>自动：司机数量与车速</option>
+                                <option value="manual" selected={{eq this.trafficForm.congestion_mode "manual"}}>管理员手动覆盖</option>
+                            </select>
+                        </label>
+                        {{#if (eq this.trafficForm.congestion_mode "manual")}}
+                            <label class="text-sm">手动拥堵程度
+                                <select aria-label="手动拥堵程度" class="w-full border rounded p-2 bg-white text-gray-900" {{on "change" (fn this.changeTrafficField "manual_congestion")}}>
+                                    <option value="none" selected={{eq this.trafficForm.manual_congestion "none"}}>通畅</option>
+                                    <option value="light" selected={{eq this.trafficForm.manual_congestion "light"}}>轻微拥堵</option>
+                                    <option value="moderate" selected={{eq this.trafficForm.manual_congestion "moderate"}}>中度拥堵</option>
+                                    <option value="heavy" selected={{eq this.trafficForm.manual_congestion "heavy"}}>严重拥堵</option>
+                                    <option value="standstill" selected={{eq this.trafficForm.manual_congestion "standstill"}}>停滞</option>
+                                </select>
+                            </label>
+                        {{/if}}
+                    </div>
+                    <details class="cs-advanced"><summary>高级设置 · 拥堵阈值与备注</summary><div class="grid grid-cols-1 gap-3 mt-3">
+                        <label class="text-sm">轻微拥堵起始车辆数
+                            <input aria-label="轻微拥堵阈值" type="number" min="1" max="1000" value={{this.trafficForm.light_threshold}} class="w-full border rounded p-2 bg-white text-gray-900" {{on "input" (fn this.changeTrafficField "light_threshold")}} />
+                        </label>
+                        <label class="text-sm">中度拥堵起始车辆数
+                            <input aria-label="中度拥堵阈值" type="number" min="2" max="1000" value={{this.trafficForm.moderate_threshold}} class="w-full border rounded p-2 bg-white text-gray-900" {{on "input" (fn this.changeTrafficField "moderate_threshold")}} />
+                        </label>
+                        <label class="text-sm">严重拥堵起始车辆数
+                            <input aria-label="严重拥堵阈值" type="number" min="3" max="1000" value={{this.trafficForm.heavy_threshold}} class="w-full border rounded p-2 bg-white text-gray-900" {{on "input" (fn this.changeTrafficField "heavy_threshold")}} />
+                        </label>
+                        <label class="text-sm ">路况备注
+                            <input aria-label="路况备注" maxlength="1000" value={{this.trafficForm.note}} class="w-full border rounded p-2 bg-white text-gray-900" {{on "input" (fn this.changeTrafficField "note")}} />
+                        </label>
+                        </div>
+                    <p class="text-xs text-gray-600 my-3">阈值须依次递增；达到轻微阈值且至少有 3 份车速时，低速会提高拥堵等级。切回自动即可解除手动覆盖。拥堵会增加预计通行时间；交汇点还会计入等待时间。</p>
+                    </details>
+<div class="cs-save-row"><button type="button" class="cs-primary" disabled={{this.roadMutationBusy}} {{on "click" this.saveTraffic}}>{{if this.isSavingTraffic "保存中…" "保存道路／交汇点路况"}}</button>
+{{#if this.selectedTrafficInfo.road_segment_uuid}}<button type="button" class="cs-danger" disabled={{this.roadMutationBusy}} {{on "click" this.requestSectionRemoval}}>删除此路段</button>{{/if}}</div>
+                </div>
+            {{/if}}
+
+            {{#if this.segmentDraft}}
+                <div class="mt-4 border-2 border-blue-300 rounded-lg p-4 bg-blue-50">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="font-bold text-sm">
+                            {{if this.segmentDraft.editingUuid "编辑路段" "新建路段"}}
+                            {{#if this.segmentDraft.geometry}}
+                                <span class="text-xs text-gray-600 font-normal">（已描画 {{this.segmentDraft.geometry.coordinates.length}} 点）</span>
+                            {{else}}
+                                <span class="text-xs text-orange-500 font-normal">（请在地图上描画新几何后点完成）</span>
+                            {{/if}}
+                        </h3>
+                        <button type="button" class="text-xs text-gray-600 hover:text-gray-700" {{on "click" this.cancelSegmentDraft}}>
+                            取消
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1  gap-3">
+                        <label class="block text-sm">
+                            <span class="text-gray-700 mb-1 block">路段名称</span>
+                            <input
+                                class="w-full border rounded px-2 py-1.5 text-sm text-gray-900 bg-white"
+                                value={{this.segmentDraft.name}}
+                                {{on "input" this.setDraftName}}
+                                placeholder="例如 K-A1 进场主路"
+                            />
+                        </label>
+
+                        <label class="block text-sm">
+                            <span class="text-gray-700 mb-1 block">所属道路</span>
+                            <select class="w-full border rounded px-2 py-1.5 text-sm text-gray-900 bg-white" {{on "change" this.setDraftRoad}}>
+                                {{#each @model.roads as |road|}}
+                                    <option value={{road.id}} selected={{eq this.segmentDraft.siteRoadUuid road.id}}>{{road.name}}</option>
+                                {{/each}}
+                            </select>
+                        </label>
+
+                        <label class="block text-sm">
+                            <span class="text-gray-700 mb-1 block">通行状态</span>
+                            <select class="w-full border rounded px-2 py-1.5 text-sm text-gray-900 bg-white" {{on "change" this.setDraftStatus}}>
+                                <option value="open" selected={{eq this.segmentDraft.status "open"}}>通畅</option>
+                                <option value="partial" selected={{eq this.segmentDraft.status "partial"}}>部分封闭</option>
+                                <option value="construction" selected={{eq this.segmentDraft.status "construction"}}>施工中</option>
+                                <option value="closed" selected={{eq this.segmentDraft.status "closed"}}>封闭</option>
+                            </select>
+                        </label>
+                    </div>
+
+                    <div class="flex gap-2 mt-4">
+                        <button
+                            type="button"
+                            class="bg-blue-600 text-white text-sm rounded px-4 py-2 hover:bg-blue-700 disabled:opacity-50"
+                            disabled={{this.isSavingSegment}}
+                            {{on "click" this.saveSegment}}
+                        >
+                            {{if this.isSavingSegment "保存中..." "保存路段"}}
+                        </button>
+                        <button type="button" class="border text-gray-900 bg-white border-gray-400 text-sm rounded px-4 py-2 hover:bg-gray-100" {{on "click" this.cancelSegmentDraft}}>
+                            取消
+                        </button>
+                    </div>
+                </div>
+            {{/if}}
+
+            {{#if this.selectedSegment}}
+                <div class="mt-4 border rounded-lg p-4 bg-gray-50">
+                    <div class="flex items-center justify-between mb-3">
+                        {{#if this.isRenameMode}}
+                            <div class="flex items-center gap-2 flex-1 mr-2">
+                                <input
+                                    class="border rounded px-2 py-1 text-sm text-gray-900 bg-white flex-1"
+                                    value={{this.renameValue}}
+                                    {{on "input" this.setRenameValue}}
+                                    placeholder="路段名称"
+                                />
+                                <button type="button" class="text-xs bg-blue-600 text-white rounded px-2 py-1" disabled={{this.isRenaming}} {{on "click" this.saveRename}}>
+                                    {{if this.isRenaming "保存中..." "保存"}}
+                                </button>
+                                <button type="button" class="text-xs text-gray-700 bg-white border border-gray-400 rounded px-2 py-1" {{on "click" this.cancelRename}}>
+                                    取消
+                                </button>
+                            </div>
+                        {{else}}
+                            <h3 class="font-bold text-sm">道路几何与名称 — {{this.selectedSegment.name}}</h3>
+                        {{/if}}
+                        <div class="flex items-center gap-2">
+                            {{#unless this.isRenameMode}}
+                                <button type="button" class="text-xs text-blue-600 hover:text-blue-800" {{on "click" (fn this.startRename this.selectedSegment)}}>
+                                    重命名
+                                </button>
+                            {{/unless}}
+                            <button type="button" class="text-xs text-blue-600 hover:text-blue-800" {{on "click" (fn this.enterEditGeometry this.selectedSegment)}}>
+                                编辑几何
+                            </button>
+                            <button type="button" class="text-xs text-blue-600 hover:text-blue-800" {{on "click" (fn this.startRedrawSegment this.selectedSegment)}}>
+                                重描
+                            </button>
+                            <button type="button" class="text-xs text-red-600 hover:text-red-800 disabled:opacity-50" disabled={{this.roadMutationBusy}} {{on "click" (fn this.requestRoadRemoval this.selectedSegment)}}>
+                                删除整条道路
+                            </button>
+                            <button type="button" class="text-xs text-gray-600 hover:text-gray-700" {{on "click" this.clearSelection}}>
+                                取消
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            {{/if}}
+
+{{#unless (or this.selectedTraffic this.selectedSegment this.segmentDraft)}}<p class="cs-hint">点击地图实线路段或交汇点编辑。路段以相邻交汇点／端点为界。</p>{{/unless}}
+<div class="cs-traffic-filter"><input type="search" aria-label="搜索路段或交汇点" placeholder="搜索名称 / OSM 编号" value={{this.trafficSearch}} {{on "input" this.setTrafficSearch}} />
+<select aria-label="筛选路况状态" {{on "change" this.setTrafficStatusFilter}}>{{#each (array "all" "open" "partial" "construction" "closed" "congested") as |status|}}<option value={{status}} selected={{eq this.trafficStatusFilter status}}>{{if (eq status "all") "全部状态" (if (eq status "open") "可通行" (if (eq status "partial") "部分封闭" (if (eq status "construction") "施工" (if (eq status "closed") "封闭" "拥堵"))))}}</option>{{/each}}</select></div>
+<h3 class="cs-section-title">当前 GCC 路段路况（{{this.filteredTrafficRoads.length}} 段）</h3><div class="cs-traffic-list" aria-label="路段列表">{{#each this.filteredTrafficRoads as |item|}}
+<button type="button" class="cs-traffic-row {{if (eq this.selectedTrafficTargetKey item.target_key) "is-selected"}}" disabled={{this.roadMutationBusy}} {{on "click" (fn this.locateTraffic item)}}>
+<span class="cs-row-title"><span class="cs-dot" style={{concat "background:" item.color ";"}}></span>{{item.name}}</span>
+<span class="cs-row-meta">{{item.start_label}} → {{item.end_label}} · {{item.length_meters}} 米</span>
+<span class="cs-row-meta">{{item.status_label}} · {{item.congestion_label}} · {{item.driver_count}} 辆 · {{if (eq item.congestion_mode "manual") "手动" "自动"}}</span></button>
+{{else}}<p class="cs-empty">没有匹配的路段。</p>{{/each}}</div>
+<details class="cs-advanced"><summary>交汇点路况（{{this.filteredTrafficJunctions.length}} 个）</summary><div class="cs-traffic-list" aria-label="交汇点列表">{{#each this.filteredTrafficJunctions as |item|}}
+<button type="button" class="cs-traffic-row {{if (eq this.selectedTrafficTargetKey item.target_key) "is-selected"}}" disabled={{this.roadMutationBusy}} {{on "click" (fn this.locateTraffic item)}}>
+<span class="cs-row-title"><span class="cs-dot" style={{concat "background:" item.color ";"}}></span>{{item.name}}</span>
+
+<span class="cs-row-meta">{{item.status_label}} · {{item.congestion_label}} · {{item.driver_count}} 辆 · {{if (eq item.congestion_mode "manual") "手动" "自动"}}</span></button>
+{{else}}<p class="cs-empty">没有匹配的交汇点。</p>{{/each}}</div></details>
+<details class="cs-advanced"><summary>道路几何与名称</summary>            <h3 class="font-bold mb-3 mt-4">道路几何与名称</h3>
+            <div class="space-y-2 max-h-80 overflow-y-auto">
+                {{#each @model.segments as |segment|}}
+                    <button
+                        type="button"
+                        class="w-full flex items-center justify-between gap-2 p-2 rounded border text-left {{if (eq this.selectedSegmentUuid segment.id) "bg-blue-50 border-blue-400" "border-transparent hover:bg-gray-50 hover:border-gray-200"}}"
+                        {{on "click" (fn this.selectSegment segment)}}
+                    >
+                        <span class="text-sm text-gray-900 truncate flex-1 min-w-0">{{segment.name}}</span>
+                        <span class="text-xs px-2 py-1 rounded shrink-0 bg-{{segment.statusColor}}-100 text-{{segment.statusColor}}-700">
+                            {{segment.status}}
+                        </span>
+                    </button>
+                {{else}}
+                    <p class="text-gray-500 text-sm">暂无路段，点击上方「画新路段」开始绘制</p>
+                {{/each}}
+            </div>
+
+</details>
+{{else if (eq this.activePanel "drivers")}}
+<h2 class="cs-section-title">车辆与导航</h2><p class="cs-hint">选择车辆定位并显示它的导航路线。定位来自最近上报记录，不代表当前仍在线。</p>
+{{#if this.selectedDriverKey}}<button type="button" class="cs-secondary" {{on "click" this.clearDriverSelection}}>清除路线选择</button>{{/if}}
+{{#each this.driverItems as |driver|}}<button type="button" class="cs-traffic-row {{if (eq driver.key this.selectedDriverKey) "is-selected"}}" {{on "click" (fn this.selectDriver driver)}}><span class="cs-row-title">🚚 {{or driver.plate_number driver.driver_name "未命名车辆"}}</span><span class="cs-row-meta">{{driver.driver_name}} · {{if driver.hasLocation "有定位记录" "暂无定位"}} · {{if driver.route "有导航路线" "暂无导航路线"}}</span></button>{{else}}<p class="cs-empty">暂无车辆定位或正在导航的车辆。</p>{{/each}}
+{{else if (eq this.activePanel "import")}}
+{{#if this.isCommittingRoadImport}}<p role="status" class="cs-notice">正在处理当前 GCC 的道路…</p>{{else if this.isLoadingRoadImport}}<p role="status" class="cs-notice">正在查询地图道路，通常需要数秒，最多等待约 45 秒。</p>{{/if}}
+{{#if this.roadImportError}}<p role="alert" class="cs-error">{{this.roadImportError}}</p>{{/if}}
+{{#if this.roadImportPreview}}<div class="cs-mode-switch" role="group" aria-label="地图操作模式"><button type="button" aria-pressed={{not this.isImportSelectionMode}} disabled={{this.roadMutationBusy}} {{on "click" (fn this.setImportSelectionMode false)}}>编辑路况</button><button type="button" aria-pressed={{this.isImportSelectionMode}} disabled={{this.roadMutationBusy}} {{on "click" (fn this.setImportSelectionMode true)}}>勾选导入</button></div>            {{#if this.roadImportPreview}}
+                <div class="mt-3 rounded border-2 border-blue-300 p-3 bg-blue-50" aria-label="地图道路导入预览">
+                    <div class="flex items-center justify-between gap-2 flex-wrap mb-2">
+                        <h2 class="font-bold text-sm">地图道路导入预览</h2>
+                        <div class="flex gap-2 flex-wrap">
+                            <select aria-label="导入道路类型" disabled={{this.isCommittingRoadImport}} class="border rounded bg-white text-gray-900 p-1 text-sm" {{on "change" this.filterRoadImport}}>
+                                <option value="all" selected={{eq this.roadImportFilter "all"}}>全部机动车道路</option>
+                                <option value="internal" selected={{eq this.roadImportFilter "internal"}}>内部／服务道路</option>
+                                <option value="main" selected={{eq this.roadImportFilter "main"}}>其他机动车道路</option>
+                            </select>
+                            <select aria-label="导入道路范围" disabled={{this.isCommittingRoadImport}} class="border rounded bg-white text-gray-900 p-1 text-sm" {{on "change" this.filterRoadImportAvailability}}>
+                                <option value="all" selected={{eq this.roadImportAvailabilityFilter "all"}}>全部候选</option>
+                                <option value="available" selected={{eq this.roadImportAvailabilityFilter "available"}}>可导入道路</option>
+                                <option value="restricted" selected={{eq this.roadImportAvailabilityFilter "restricted"}}>需核实通行权限</option>
+                                <option value="blocked" selected={{eq this.roadImportAvailabilityFilter "blocked"}}>已存在／重叠道路</option>
+                            </select>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-600 mb-2">数据获取：{{this.roadImportFetchedAt}} · 预览有效 15 分钟。仅导入 GCC 边界内部分，自动按真实交汇点分段。限制通行道路默认不勾选，导入后保持封闭，核实车辆权限后可编辑开放。</p>
+                    <p class="text-xs text-gray-700 mb-2">紫色虚线：已勾选；橙色虚线：可勾选的限制道路，导入后默认封闭；灰色短虚线：已有、已删除或重叠，不能重复导入，点击可查看原因。</p>
+                    <div class="flex flex-wrap gap-2 mb-2 text-sm">
+                        <button type="button" disabled={{not this.canSelectRoadImports}} class="bg-blue-600 text-white rounded px-3 py-2 disabled:opacity-50" {{on "click" this.selectAllRoadImports}}>一键勾选可导入道路（{{this.roadImportAvailableCount}} 条）</button>
+                        <button type="button" disabled={{not this.canSelectRoadImports}} class="border rounded bg-white px-2 py-1 disabled:opacity-50" {{on "click" this.selectUnrestrictedRoadImports}}>仅勾选非限制道路</button>
+                        <button type="button" disabled={{this.isCommittingRoadImport}} class="border rounded bg-white px-2 py-1" {{on "click" this.clearRoadImports}}>清空当前筛选</button>
+                    </div>
+                    <p role="status" class="text-sm text-blue-800 mb-2">当前筛选：{{this.roadImportCandidates.length}} 条候选 · 可导入 {{this.roadImportAvailableCount}} 条 · 已勾选 {{this.roadImportSelectedCount}} 条{{#if this.roadImportRestrictedSelectedCount}}，其中 {{this.roadImportRestrictedSelectedCount}} 条限制道路将按封闭状态导入{{/if}}。批量勾选、清空和确认导入仅作用于当前筛选。</p>
+                    {{#unless this.roadImportAvailableCount}}<p class="text-sm text-gray-700 mb-2">当前筛选没有可导入道路。已导入道路可直接编辑；已删除道路请使用“恢复原道路”，会保留原配置。重叠候选需先核对。</p>{{/unless}}
+                    <div class="overflow-y-auto rounded border bg-white" style="max-height:220px">
+                        {{#each this.roadImportCandidates as |road|}}
+                            <div class="flex gap-2 p-2 border-b text-sm items-start">
+                                <input aria-label={{concat "导入道路 " road.name " " road.source_meta.way_id}} type="checkbox" checked={{road.selected}} disabled={{or road.disabled this.isCommittingRoadImport}} {{on "change" (fn this.toggleRoadImport road)}} />
+                                <span class="flex-1 min-w-0"><span class="font-medium">{{road.name}}</span> · {{road.length_meters}} 米 · {{road.directionLabel}}
+                                    <span class="text-xs text-gray-600 block">{{road.highwayLabel}} · OSM {{road.source_meta.way_id}} · {{road.availability_label}}{{#if road.restricted}} · 限制通行{{/if}}{{#unless (eq road.routing.layer "0")}} · 层级 {{road.routing.layer}}{{/unless}}{{#if (eq road.status "construction")}} · 施工（禁止通行）{{/if}}</span>
+                                </span>
+                                {{#if (eq road.availability "deleted")}}
+                                    <button type="button" class="shrink-0 text-blue-700 underline" disabled={{this.roadMutationBusy}} {{on "click" (fn this.toggleRoadImport road)}}>恢复原道路</button>
+                                {{else if road.existing_road_uuid}}
+                                    <button type="button" class="shrink-0 text-blue-700 underline" disabled={{this.roadMutationBusy}} {{on "click" (fn this.editImportedRoad road)}}>编辑路况／名称</button>
+                                {{/if}}
+                            </div>
+                        {{else}}
+                            <p class="p-3 text-sm text-gray-600">当前筛选没有候选道路。OSM 未收录的道路可以用“画新路段”补充。</p>
+                        {{/each}}
+                    </div>
+                    <div class="flex gap-2 items-center flex-wrap mt-3">
+                        <button type="button" disabled={{not this.canCommitRoadImport}} class="bg-blue-600 text-white rounded px-3 py-2 text-sm disabled:opacity-50" {{on "click" this.commitRoadImport}}>{{if this.isCommittingRoadImport "正在导入…" (concat "确认导入选中的 " this.roadImportSelectedCount " 条道路")}}</button>
+                        <button type="button" disabled={{this.isCommittingRoadImport}} class="border rounded bg-white px-3 py-2 text-sm" {{on "click" this.cancelRoadImport}}>取消预览</button>
+                        <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer" class="text-xs text-gray-600 underline">© OpenStreetMap contributors · ODbL</a>
+                    </div>
+                </div>
+            {{/if}}
+
+{{else unless (or this.isLoadingRoadImport this.isCommittingRoadImport)}}<div class="cs-empty"><p>从地图获取当前 GCC 的道路，预览、筛选后导入。</p><p>已有道路可编辑，删除的道路可恢复原记录。</p><button type="button" class="cs-primary" disabled={{not this.canPreviewRoadImport}} {{on "click" this.previewRoadImport}}>获取道路预览</button></div>{{/if}}
+{{else if (eq this.activePanel "recovery")}}
+<h2 class="cs-section-title">道路恢复</h2><p class="cs-hint">分别恢复已删除路段或整条道路，保留原记录与配置。</p>            {{#if this.removedTrafficRoads.length}}
+                <details class="mt-4 border rounded p-2">
+                    <summary class="cursor-pointer text-sm font-medium">已删除路段（{{this.removedTrafficRoads.length}} 次，可恢复）</summary>
+                    <div class="space-y-2 max-h-60 overflow-y-auto mt-2">
+                        {{#each this.removedTrafficRoads as |road|}}
+                            <div class="border rounded p-2 text-sm">
+                                <span class="block mb-1">{{road.name}} · 已删除的一段</span>
+                                <span class="block text-xs text-gray-600 mb-1">删除时间：{{road.removedAtLabel}}</span>
+                                <button type="button" class="text-blue-700 underline disabled:opacity-50" disabled={{this.roadMutationBusy}} {{on "click" (fn this.restoreRemovedSection road)}}>恢复此路段</button>
+                            </div>
+                        {{/each}}
+                    </div>
+                </details>
+            {{/if}}
+            {{#if this.deletedRoads.length}}
+                <details class="mt-4 mb-4 border rounded p-2">
+                    <summary class="cursor-pointer text-sm font-medium">已删除整条道路（{{this.deletedRoads.length}} 条，可恢复）</summary>
+                    <div class="space-y-2 max-h-60 overflow-y-auto mt-2">
+                        {{#each this.deletedRoads as |road|}}
+                            <div class="border rounded p-2 text-sm">
+                                <span class="block mb-1">{{road.name}}{{#if road.source_meta.way_id}} · OSM {{road.source_meta.way_id}}{{/if}}</span>
+                                <span class="block text-xs text-gray-600 mb-1">删除时间：{{road.deletedAtLabel}}</span>
+                                <button type="button" class="text-blue-700 underline" disabled={{this.roadMutationBusy}} {{on "click" (fn this.requestRoadRestore road)}}>恢复原道路</button>
+                            </div>
+                        {{/each}}
+                    </div>
+                </details>
+            {{/if}}
+
+{{#unless (or this.removedTrafficRoads.length this.deletedRoads.length)}}<p class="cs-empty">当前 GCC 没有可恢复的道路。</p>{{/unless}}
+{{else if (eq this.activePanel "events")}}    <div class="grid grid-cols-1  gap-4 mt-4">
+        <div class="bg-white rounded-lg shadow p-4">
+            <h3 class="font-bold mb-3">活跃道路事件</h3>
+            {{#each @model.activeEvents as |event|}}
+                <div class="border-l-4 border-orange-400 p-2 mb-2">
+                    <p class="font-medium text-sm">{{event.title}}</p>
+                    <p class="text-xs text-gray-600">{{event.event_type}}</p>
+                </div>
+            {{else}}
+                <p class="text-gray-500 text-sm">无活跃事件</p>
+            {{/each}}
+        </div>
+
+        <div class="bg-white rounded-lg shadow p-4">
+            <h3 class="font-bold mb-3">进行中施工活动</h3>
+            {{#each @model.activities as |activity|}}
+                <div class="border-l-4 border-blue-400 p-2 mb-2">
+                    <p class="font-medium text-sm">{{activity.title}}</p>
+                    <p class="text-xs text-gray-600">{{activity.type}}</p>
+                </div>
+            {{else}}
+                <p class="text-gray-500 text-sm">无进行中施工</p>
+            {{/each}}
+        </div>
+    </div>
+
+            <h3 class="font-bold mb-3 mt-6">活跃禁行区</h3>
+            <div class="space-y-2 max-h-60 overflow-y-auto">
+                {{#each this.avoidAreas as |avoid|}}
+                    <div class="flex items-center justify-between p-2 rounded border">
+                        <div>
+                            <p class="text-sm font-medium">{{or avoid.reason "施工占道"}}</p>
+                            <p class="text-xs text-gray-600">{{avoid.geometry.type}}</p>
+                        </div>
+                        <button
+                            type="button"
+                            class="text-xs text-red-600 hover:underline"
+                            {{on "click" (fn this.deactivateAvoidArea avoid)}}
+                        >
+                            停用
+                        </button>
+                    </div>
+                {{else}}
+                    <p class="text-gray-500 text-sm">暂无禁行区</p>
+                {{/each}}
+            </div>
+{{/if}}
+</div></aside>{{/unless}}
+</div>
+<footer class="cs-status-bar"><span class="{{if this.trafficError "cs-error"}}">{{if this.trafficError this.trafficError (concat "路况每 15 秒刷新 · 最近更新 " (or this.trafficUpdatedAt "等待数据"))}}</span><span>统计最近 90 秒有效定位 · 精度 ≤ 50 米</span></footer>
+{{#if this.latestNotification}}<div class="cs-notification" role="status"><strong>{{this.latestNotification.title}}</strong><p>{{this.latestNotification.message}}</p></div>{{/if}}
+</div>

@@ -1,0 +1,30 @@
+<div class="p-6">
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold">通知中心</h1>
+        <button {{on "click" this.markAllRead}} class="text-sm text-blue-600 hover:underline">全部已读</button>
+    </div>
+    <div class="space-y-3">
+        {{#each @model as |notification|}}
+            <div class="bg-white rounded-lg shadow p-4 {{unless notification.isRead 'border-l-4 border-blue-500'}}">
+                <div class="flex items-start justify-between">
+                    <div class="flex-1">
+                        <p class="font-bold text-sm {{unless notification.isRead 'text-blue-700'}}">{{notification.title}}</p>
+                        <p class="text-sm text-gray-600 mt-1">{{notification.message}}</p>
+                        <div class="flex gap-2 mt-2">
+                            <span class="text-xs px-2 py-0.5 rounded bg-gray-100 text-gray-600">{{notification.type}}</span>
+                            <span class="text-xs px-2 py-0.5 rounded
+                                {{if (eq notification.severity 'critical') 'bg-red-100 text-red-700'}}
+                                {{if (eq notification.severity 'warning') 'bg-yellow-100 text-yellow-700'}}
+                                {{if (eq notification.severity 'info') 'bg-blue-100 text-blue-700'}}">
+                                {{notification.severity}}
+                            </span>
+                        </div>
+                    </div>
+                    <span class="text-xs text-gray-400">{{notification.created_at}}</span>
+                </div>
+            </div>
+        {{else}}
+            <div class="text-center text-gray-400 py-8">暂无通知</div>
+        {{/each}}
+    </div>
+</div>

@@ -1,0 +1,40 @@
+# 通用构建上下文瘦身 (同时服务 docker/api/Dockerfile 和 console/Dockerfile 两个构建)
+# 注意: console 构建需要 console/ 和 packages/ 全部内容, 不能排除
+api/*
+!api/app
+api/app/*
+!api/app/Exceptions
+api/app/Exceptions/*
+!api/app/Exceptions/Handler.php
+builds
+docs
+.git
+**/node_modules
+container-state-backup-*
+docker/database
+
+.env
+security.local.json
+credentials.local.txt
+backups
+infra/helm/secrets.env
+docker/secrets
+.playwright
+.playwright-cli
+*.local.log
+
+# Portable source delivery: include httpd static source, exclude runtime configuration.
+!api/public/
+!api/public/**
+**/.git
+api/vendor
+packages/*/vendor
+**/.env
+**/.env.*
+**/dist
+**/tmp
+**/coverage
+**/__pycache__
+portable/generated
+api/public/storage
+api/public/hot

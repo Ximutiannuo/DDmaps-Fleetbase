@@ -1,0 +1,9 @@
+{
+    "name": "ConstructionSite",
+    "version": "0.0.1",
+    "description": "Construction Site Management Extension for Fleetbase",
+    "license": "AGPL-3.0-or-later",
+    "author": "Fleetbase Pte Ltd <hello@fleetbase.io>",
+    "engine": "package.json",
+    "api": "composer.json"
+}

@@ -1,0 +1,27 @@
+<div class="p-6 max-w-xl">
+    <h1 class="text-2xl font-bold mb-4">{{@title}}</h1>
+    {{#if this.error}}<p role="alert" class="text-red-600 mb-3">{{this.error}}</p>{{/if}}
+    {{#if this.saved}}<p role="status" class="text-green-700 mb-3">道路已保存。</p>{{/if}}
+    <form {{on "submit" this.save}} class="space-y-4">
+        <label class="block">道路名称<input value={{this.name}} {{on "input" (fn this.field "name")}} maxlength="255" class="block w-full border rounded p-2" required /></label>
+        <label class="block">道路类型
+            <select value={{this.type}} {{on "change" (fn this.field "type")}} class="block w-full border rounded p-2">
+                <option value="main" selected={{eq this.type "main"}}>主干道</option>
+                <option value="branch" selected={{eq this.type "branch"}}>支路</option>
+                <option value="haul_road" selected={{eq this.type "haul_road"}}>运输道路</option>
+                <option value="ring_road" selected={{eq this.type "ring_road"}}>环路</option>
+            </select>
+        </label>
+        <label class="block">道路状态
+            <select value={{this.status}} {{on "change" (fn this.field "status")}} class="block w-full border rounded p-2">
+                <option value="open" selected={{eq this.status "open"}}>开放</option>
+                <option value="partial" selected={{eq this.status "partial"}}>部分封闭</option>
+                <option value="construction" selected={{eq this.status "construction"}}>施工</option>
+                <option value="closed" selected={{eq this.status "closed"}}>封闭</option>
+            </select>
+        </label>
+        <p class="text-sm text-gray-600">道路位置和路段几何可在实时地图中绘制和编辑。</p>
+        <button type="submit" disabled={{this.busy}} class="bg-blue-600 text-white rounded px-4 py-2">{{if this.busy '保存中…' '保存道路'}}</button>
+        <LinkTo @route="roads.index" class="ml-3 text-blue-700">返回道路列表</LinkTo>
+    </form>
+</div>

@@ -1,0 +1,31 @@
+<div class="p-6">
+    <h1 class="text-2xl font-bold mb-6">路况记录</h1>
+    <div class="bg-white rounded-lg shadow overflow-hidden">
+        <table class="w-full">
+            <thead class="bg-gray-50">
+                <tr>
+                    <th class="px-4 py-3 text-left text-sm font-medium text-gray-600">路段</th>
+                    <th class="px-4 py-3 text-left text-sm font-medium text-gray-600">状态</th>
+                    <th class="px-4 py-3 text-left text-sm font-medium text-gray-600">路面状况</th>
+                    <th class="px-4 py-3 text-left text-sm font-medium text-gray-600">拥堵</th>
+                    <th class="px-4 py-3 text-left text-sm font-medium text-gray-600">备注</th>
+                    <th class="px-4 py-3 text-left text-sm font-medium text-gray-600">上报时间</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+                {{#each @model as |condition|}}
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-4 py-3 text-sm">{{condition.segment.name}}</td>
+                        <td class="px-4 py-3"><span class="text-xs px-2 py-1 rounded bg-gray-100">{{condition.status}}</span></td>
+                        <td class="px-4 py-3 text-sm">{{condition.surface_condition}}</td>
+                        <td class="px-4 py-3 text-sm">{{condition.congestion}}</td>
+                        <td class="px-4 py-3 text-sm text-gray-500">{{condition.note}}</td>
+                        <td class="px-4 py-3 text-sm text-gray-500">{{condition.reported_at}}</td>
+                    </tr>
+                {{else}}
+                    <tr><td colspan="6" class="px-4 py-8 text-center text-gray-400">暂无路况记录</td></tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>

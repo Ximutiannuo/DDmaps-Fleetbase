@@ -1,0 +1,6 @@
+{
+    "API_HOST": "",
+    "SOCKETCLUSTER_HOST": "",
+    "SOCKETCLUSTER_PORT": 4200,
+    "SOCKETCLUSTER_SECURE": ""
+}

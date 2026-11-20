@@ -1,0 +1,65 @@
+<div class="relative w-full h-screen">
+    {{!-- Leaflet map container --}}
+    <div
+        {{did-insert this.setupMap}}
+        {{did-update this.updateMarkerFromPosition this.position}}
+        class="absolute inset-0 z-0"
+        style="width:100%;height:100%;"
+    ></div>
+
+    {{!-- Error overlay --}}
+    {{#if this.error}}
+        <div class="absolute top-0 left-0 right-0 z-10 bg-red-600 text-white p-3 text-sm text-center">
+            {{this.error}}
+        </div>
+    {{/if}}
+
+    {{!-- Waiting for position overlay --}}
+    {{#if (and (not this.position) (not this.error))}}
+        <div class="absolute inset-0 z-10 flex items-center justify-center bg-gray-800 bg-opacity-50">
+            <div class="text-center text-white">
+                <div class="animate-spin inline-block w-8 h-8 border-4 border-white border-t-transparent rounded-full mb-3"></div>
+                <p class="text-sm">正在获取定位...</p>
+                <p class="text-xs mt-1 opacity-75">请允许浏览器获取您的位置</p>
+            </div>
+        </div>
+    {{/if}}
+
+    {{!-- Status bar overlay --}}
+    {{#unless this.position}}
+        <div class="absolute bottom-4 left-4 right-4 z-20 rounded bg-white p-4 shadow">
+            <p class="text-sm text-gray-700">定位尚未就绪，登记会话仍保留。</p>
+            <div class="flex gap-3 mt-3">
+                <button type="button" {{on "click" this.retryLocation}} class="rounded bg-blue-600 text-white px-4 py-2">重试定位</button>
+                <button type="button" {{on "click" this.confirmExit}} class="rounded bg-red-600 text-white px-4 py-2">退场</button>
+            </div>
+        </div>
+    {{/unless}}
+    {{#if this.position}}
+        <div class="absolute top-0 left-0 right-0 z-10 bg-white bg-opacity-90 shadow p-3">
+            <div class="flex items-center justify-between">
+                <div class="text-sm">
+                    <span class="font-medium text-gray-800">追踪中</span>
+                    <span class="text-gray-500 ml-2 text-xs">精度: {{round this.accuracy}}米</span>
+                </div>
+                <button type="button" {{on "click" this.confirmExit}} class="bg-red-600 text-white text-sm rounded px-4 py-1.5 font-medium hover:bg-red-700">
+                    退场
+                </button>
+            </div>
+        </div>
+    {{/if}}
+
+    {{!-- Exit confirmation modal --}}
+    {{#if this.showExitConfirm}}
+        <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div class="bg-white rounded p-6 max-w-sm mx-4">
+                <h3 class="text-lg font-bold mb-2">确认退场？</h3>
+                <p class="text-gray-600 mb-4 text-sm">退场后将停止 GPS 追踪</p>
+                <div class="flex gap-3">
+                    <button type="button" {{on "click" this.cancelExit}} class="flex-1 border rounded p-2">取消</button>
+                    <button type="button" {{on "click" this.doExit}} class="flex-1 bg-red-600 text-white rounded p-2">确认退场</button>
+                </div>
+            </div>
+        </div>
+    {{/if}}
+</div>

@@ -1,0 +1,65 @@
+# Disposable integration environment. No production mounts or published ports.
+services:
+  database:
+    image: mysql:8.0-oracle
+    environment:
+      MYSQL_ROOT_PASSWORD: integration-only-password
+      MYSQL_DATABASE: fleetbase
+    healthcheck:
+      test: ["CMD-SHELL", "MYSQL_PWD=$$MYSQL_ROOT_PASSWORD mysql -uroot -e 'SELECT 1' >/dev/null"]
+      interval: 3s
+      timeout: 5s
+      retries: 40
+    tmpfs: [/var/lib/mysql]
+    volumes:
+      - ./docker/database-test:/docker-entrypoint-initdb.d:ro
+  cache:
+    image: redis:4-alpine
+  socket:
+    image: socketcluster/socketcluster:v17.4.0
+    environment:
+      DDMAPS_SOCKET_AUTH_KEY: integration-only-signing-key-at-least-32-bytes
+    volumes:
+      - ./docker/socket/server.js:/usr/src/server.js:ro
+      - ./docker/socket/security-test.js:/usr/src/security-test.js:ro
+  application:
+    image: fleetbase/fleetbase-api:local
+    build:
+      context: .
+      dockerfile: docker/api/Dockerfile
+    volumes:
+      - ./scripts/regression.sh:/tmp/regression.sh:ro
+      - ./scripts/grant-site-writer.php:/tmp/grant-site-writer.php:ro
+    environment:
+      APP_ENV: production
+      APP_KEY: "base64:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
+      DDMAPS_INTEGRATION_TEST: "1"
+      CONSTRUCTION_SITE_DEFAULT_COMPANY_UUID: "356542c8-b752-4dec-a7f6-5c5fb6c89703"
+      LOG_CHANNEL: daily
+      APP_DEBUG: "false"
+      DATABASE_URL: mysql://root:integration-only-password@database/fleetbase
+      QUEUE_CONNECTION: sync
+      CACHE_DRIVER: redis
+      CACHE_URL: tcp://cache
+      REDIS_URL: tcp://cache
+      REDIS_HOST: cache
+      BROADCAST_DRIVER: socketcluster
+      SOCKETCLUSTER_HOST: socket
+      SOCKETCLUSTER_PORT: 8000
+      DDMAPS_SOCKET_AUTH_KEY: integration-only-signing-key-at-least-32-bytes
+    depends_on:
+      database:
+        condition: service_healthy
+      cache:
+        condition: service_started
+      socket:
+        condition: service_started
+
+  console:
+    image: fleetbase-console:latest
+    profiles: [browser]
+    ports:
+      - "127.0.0.1:14201:8080"
+    volumes:
+      - ./docker/console-test.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on: [application]

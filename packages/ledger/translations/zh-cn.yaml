@@ -1,0 +1,107 @@
+ledger:
+  extension-name: 账本
+
+common:
+  ledger: 账本
+  overview: 概览
+  transactions: 交易
+
+resource:
+  account: 账户
+  accounts: 账户
+  invoice: 发票
+  invoices: 发票
+  invoice-template: 发票模板
+  invoice-templates: 发票模板
+  journal: 日记账
+  journal-entries: 日记账
+  transaction: 交易
+  transactions: 交易
+  wallet: 钱包
+  wallets: 钱包
+  gateway: 支付网关
+  gateways: 支付网关
+  wallet-transaction: 钱包交易
+  wallet-transactions: 钱包交易
+
+column:
+  id: ID
+  number: 编号
+  name: 名称
+  code: 代码
+  type: 类型
+  status: 状态
+  direction: 方向
+  description: 描述
+  date: 日期
+  created-at: 创建时间
+  updated-at: 更新时间
+  amount: 金额
+  balance: 余额
+  balance-after: 交易后余额
+  total: 合计
+  net-amount: 净额
+  fee: 手续费
+  tax: 税额
+  currency: 币种
+  gateway: 网关
+  payment-method: 付款方式
+  reference: 参考号
+  memo: 备注
+  period: 周期
+  settled-at: 结算时间
+  failure-reason: 失败原因
+  due-date: 到期日
+  issued-at: 开具时间
+  invoice-date: 发票日期
+  customer: 客户
+  debit-account: 借方账户
+  credit-account: 贷方账户
+  source: 来源
+  driver: 司机
+  environment: 环境
+  default: 默认
+  owner: 所有者
+  payer: 付款方
+  payee: 收款方
+  frozen: 冻结
+  orientation: 方向
+
+menu:
+  dashboard: 仪表盘
+  billing: 账单
+  invoices: 发票
+  payments: 付款
+  wallets: 钱包
+  gateways: 支付网关
+  accounting: 会计
+  chart-of-accounts: 科目表
+  journal-entries: 日记账
+  general-ledger: 总分类账
+  reports: 报表
+  income-statement: 损益表
+  balance-sheet: 资产负债表
+  trial-balance: 试算平衡表
+  cash-flow: 现金流量表
+  ar-aging: 应收账款账龄
+  wallet-summary: 钱包汇总
+  settings: 设置
+  invoice-settings: 发票设置
+  payment-settings: 付款设置
+  accounting-settings: 会计设置
+
+invoice:
+  no-transactions: 此发票未记录任何交易。
+  actions:
+    preview-invoice: "预览发票 #{number}"
+    preview-invoice-fallback: 预览发票
+    download-pdf: 下载 PDF
+    record-payment: 记录付款
+    record-payment-title: "记录付款 — {number}"
+    copy-payment-link: 复制付款链接
+    copy-invoice-url: 复制发票链接
+    payment-link-copied: 发票链接已复制到剪贴板。
+    payment-link-copy-failed: 复制发票链接失败，请手动复制。
+    send: 发送发票
+    void: 作废发票
+    edit: 编辑发票

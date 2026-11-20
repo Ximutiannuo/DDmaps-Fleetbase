@@ -1,0 +1,36 @@
+<div class="p-6">
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold">道路管理</h1>
+        <LinkTo @route="roads.new" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">新建道路</LinkTo>
+    </div>
+    <div class="bg-white rounded-lg shadow overflow-hidden">
+        <table class="w-full">
+            <thead class="bg-gray-50">
+                <tr>
+                    <th class="px-4 py-3 text-left text-sm font-medium text-gray-600">名称</th>
+                    <th class="px-4 py-3 text-left text-sm font-medium text-gray-600">类型</th>
+                    <th class="px-4 py-3 text-left text-sm font-medium text-gray-600">状态</th>
+                    <th class="px-4 py-3 text-left text-sm font-medium text-gray-600">路段数</th>
+                    <th class="px-4 py-3 text-left text-sm font-medium text-gray-600">操作</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+                {{#each @model as |road|}}
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-4 py-3 text-sm">{{road.name}}</td>
+                        <td class="px-4 py-3 text-sm">{{road.road_type}}</td>
+                        <td class="px-4 py-3">
+                            <span class="text-xs px-2 py-1 rounded {{road.statusClasses}}">{{road.status}}</span>
+                        </td>
+                        <td class="px-4 py-3 text-sm">{{road.segments.length}}</td>
+                        <td class="px-4 py-3">
+                            <LinkTo @route="roads.edit" @model={{road}} class="text-blue-600 text-sm hover:underline">编辑</LinkTo>
+                        </td>
+                    </tr>
+                {{else}}
+                    <tr><td colspan="5" class="px-4 py-8 text-center text-gray-400">暂无道路数据</td></tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>

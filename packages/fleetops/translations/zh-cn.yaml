@@ -1,0 +1,2304 @@
+fleet-ops:
+    extension-name: 车队运营
+
+common:
+    proof-of-delivery: 签收凭证
+    ad-hoc: 临时调度
+    bulk-dispatch: 批量派单
+    dispatch-orders: 派发订单
+    dispatch-order: 派发订单
+    assign-driver: 分配司机
+    unassign-driver: 取消分配司机
+    assign-drivers: 分配司机
+    no-driver-assigned: 未分配司机
+    details: 详情
+    name: 名称
+    title: 标题
+    email: 邮箱
+    phone: 电话
+    internal-id: 内部ID
+    type: 类型
+    address: 地址
+    create-order: 创建订单
+    coordinates: 坐标
+    city: 城市
+    country: 国家
+    status: 状态
+    upload-new-photo: 上传新照片
+    resource-actions: >-
+        {resource}操作
+    resource-location: >-
+        {resource}位置
+    search-countries: 搜索国家
+    select-resource-filter-by: 选择{resource}进行筛选
+    table-view: 表格视图
+    grid-view: 网格视图
+    calendar-view: 日历视图
+    change-layout: 切换布局
+    livemap: 实时地图
+    tracking: 追踪
+    activity: 活动
+    eta: 预计到达时间
+    position: 位置
+    positions: 位置
+    pos: POS
+    edit-address: 编辑地址
+    new-address: 新地址
+    select-address: 选择地址
+    save: 保存
+    save-changes: 保存更改
+    done: 完成
+    delete: 删除
+    overview: 概览
+    notes: 备注
+    schedule: 日程安排
+    optional: 可选
+    unauthorized-access: 您无权访问此资源。
+    online: 在线
+    refresh: 刷新
+    loading-route: 正在加载路线...
+    hover-to-load-route: 正在加载路线预览...
+    unable-to-load-route: 无法加载路线预览。
+
+menu:
+    operations: 运营管理
+    dashboard: 仪表盘
+    orders: 订单
+    service-rates: 服务费率
+    scheduler: 调度器
+    order-config: 订单配置
+    resources: 资源
+    drivers: 司机
+    vehicles: 车辆
+    fleets: 车队
+    vendors: 供应商
+    contacts: 联系人
+    places: 地点
+    fuel-reports: 燃油报告
+    fuel-transactions: 燃油交易
+    issues: 问题工单
+    maintenance: 维护保养
+    schedules: 维护计划
+    work-orders: 工单
+    equipment: 设备
+    parts: 配件
+    maintenance-history: 维护记录
+    connectivity: 车联网
+    telematics: 远程信息处理
+    fuel-providers: 燃油集成
+    devices: 设备
+    sensors: 传感器
+    events: 事件
+    tracking: 追踪
+    analytics: 数据分析
+    reports: 报表
+    settings: 设置
+    navigator-app: 导航应用
+    payments: 付款
+    notifications: 通知
+    routing: 路线规划
+    map: 地图
+    custom-fields: 自定义字段
+    order-board: 订单看板
+    avatars: 头像管理
+    scheduling: 排班
+    maintenances: 维护保养
+    orchestrator: 调度编排
+    orchestrator-settings: 调度编排设置
+
+resource:
+    asset: 资产
+    assets: 资产
+    activity: 活动
+    activities: 活动
+    contact: 联系人
+    contacts: 联系人
+    customer-contact: 客户联系人
+    customer-contacts: 客户联系人
+    customer-vendor: 客户供应商
+    customer-vendors: 客户供应商
+    customer: 客户
+    customers: 客户
+    custom-entity: 自定义实体
+    custom-entities: 自定义实体
+    device-event: 设备事件
+    device-events: 设备事件
+    device: 设备
+    devices: 设备
+    driver: 司机
+    drivers: 司机
+    entity: 实体
+    entities: 实体
+    equipment: 设备
+    equipments: 设备
+    facilitator-contact: 协调方联系人
+    facilitator-contacts: 协调方联系人
+    facilitator-customer: 协调方客户
+    facilitator-customers: 协调方客户
+    facilitator-integrated-vendor: 协调方集成供应商
+    facilitator-integrated-vendors: 协调方集成供应商
+    facilitator-vendor: 协调方供应商
+    facilitator-vendors: 协调方供应商
+    facilitator: 协调方
+    facilitators: 协调方
+    fleet-driver: 车队司机
+    fleet-drivers: 车队司机
+    fleet: 车队
+    fleets: 车队
+    fuel-report: 燃油报告
+    fuel-reports: 燃油报告
+    integrated-vendor: 集成供应商
+    integrated-vendors: 集成供应商
+    issue: 问题
+    issues: 问题
+    maintenance: 维护保养
+    maintenances: 维护保养
+    maintenance-schedule: 维护计划
+    maintenance-schedules: 维护计划
+    order-config: 订单配置
+    order-configs: 订单配置
+    order: 订单
+    orders: 订单
+    part: 配件
+    parts: 配件
+    payload: 货物
+    payloads: 货物
+    place: 地点
+    places: 地点
+    purchase-rate: 采购费率
+    purchase-rates: 采购费率
+    route: 路线
+    routes: 路线
+    sensor: 传感器
+    sensors: 传感器
+    service-area: 服务区域
+    service-areas: 服务区域
+    service-quote-item: 服务报价项
+    service-quote-items: 服务报价项
+    service-quote: 服务报价
+    service-quotes: 服务报价
+    service-rate-fee: 服务费
+    service-rate-fees: 服务费
+    service-rate-parcel-fee: 包裹服务费
+    service-rate-parcel-fees: 包裹服务费
+    service-rate: 服务费率
+    service-rates: 服务费率
+    telematic: 远程信息设备
+    telematics: 远程信息处理
+    tracking-number: 追踪号
+    tracking-numbers: 追踪号
+    tracking-status: 追踪状态
+    tracking-statuses: 追踪状态
+    vehicle-device: 车载设备
+    vehicle-devices: 车载设备
+    vehicle: 车辆
+    vehicles: 车辆
+    vendor: 供应商
+    vendors: 供应商
+    warranty: 保修
+    warranties: 保修
+    waypoint: 航点
+    waypoints: 航点
+    work-order: 工单
+    work-orders: 工单
+    zone: 区域
+    zones: 区域
+
+order-status:
+    created: 已创建
+    ready: 就绪
+    dispatched: 已派发
+    started: 已开始
+    completed: 已完成
+    canceled: 已取消
+
+column:
+    address: 地址
+    country: 国家
+    created-at: 创建时间
+    id: ID
+    internal-id: 内部ID
+    name: 名称
+    phone: 电话
+    route-type: 路线类型
+    status: 状态
+    type: 类型
+    updated-at: 更新时间
+    vehicle: 车辆
+    vendor: 供应商
+    created: 创建时间
+    email: 邮箱
+    title: 标题
+    updated: 更新时间
+    fleet: 车队
+    license: 驾照
+    active-manpower: 在岗人数
+    manpower: 人力
+    parent-fleet: 上级车队
+    service-area: 服务区域
+    task: 任务
+    zone: 区域
+    driver: 司机
+    edit-fuel: 编辑燃油
+    odometer: 里程表
+    reporter: 报告人
+    view: 查看
+    volume: 容量
+    assignee: 负责人
+    category: 分类
+    priority: 优先级
+    city: 城市
+    neighborhood: 社区
+    postal-code: 邮编
+    state: 省/州
+    make: 品牌
+    model: 型号
+    plate-number: 车牌号
+    year: 年份
+    website-url: 网站链接
+    created-by: 创建人
+    customer: 客户
+    driver-assigned: 已分配司机
+    dropoff: 送达地
+    facilitator: 协调方
+    items: 项目
+    payload: 货物
+    pickup: 取货地
+    scheduled-at: 计划时间
+    tracking: 追踪
+    transaction: 交易
+    updated-by: 更新人
+    vehicle-assigned: 已分配车辆
+    service: 服务
+    location: 位置
+    coordinates: 坐标
+    current-job: 当前任务
+    last-seen: 最后出现
+    place: 地点
+    subject: 主题
+    summary: 摘要
+    total-cost: 总费用
+    due-at: 到期时间
+    serial-number: 序列号
+    manufacturer: 制造商
+    part-number: 配件编号
+    quantity-on-hand: 库存数量
+    quantity: 数量
+    unit-cost: 单位成本
+    code: 代码
+    interval: 间隔
+    next-due: 下次到期
+    asset: 资产
+    performed-by: 执行人
+
+map:
+    visibility-controls:
+        title: 可见性控制
+        hide-places: 隐藏所有地点
+        show-places: 显示所有地点
+        driver-controls: 司机控制
+        driver-visibility-controls: 司机可见性控制
+        show-drivers: 显示所有司机
+        hide-drivers: 隐藏所有司机
+        show-online-drivers: 仅显示在线司机
+        show-offline-drivers: 仅显示离线司机
+        vehicle-controls: 车辆控制
+        vehicle-visibility-controls: 车辆可见性控制
+        hide-vehicles: 隐藏所有车辆
+        show-vehicles: 显示所有车辆
+        show-online-vehicles: 仅显示在线车辆
+        show-offline-vehicles: 仅显示离线车辆
+    zones-panel:
+        title: 服务区域
+        create-service: 创建新服务区域
+        show: 显示所有服务区域
+        hide: 隐藏所有服务区域
+        action: 操作
+        focus: 聚焦
+        focus-resource: >-
+            聚焦：{resource}
+        blur: 隐藏服务区域
+        blur-resource: >-
+            隐藏：{resource}
+        create-zone: 在内部创建区域
+        create-zone-inside: >-
+            创建区域：{serviceAreaName}
+        edit-resource-boundaries: 编辑{resource}边界
+        edit-boundaries: >-
+            编辑边界：{resource}
+    toolbar:
+        create: 创建订单
+        view-order: 查看订单
+        view-service-area: 查看服务区域
+        visibility: 可见性控制
+        scope: 范围
+
+activity:
+    form:
+        code: 代码
+        code-help-text: 输入此活动的唯一标识符。
+        completes-order: 完成订单
+        details: 详情
+        details-help-text: "为最终用户提供活动的详细描述。"
+        key: 键
+        key-help-text: '"输入用于程序化决策的键。此键可以代表一个或多个具有相同标识符的活动。注意：此键不要求唯一。"'
+        pod-method-placeholder: 选择签收凭证方式
+        require-pod: 需要签收凭证
+        require-pod-help-text: 此活动要求在应用于订单之前创建签收凭证。
+        select-pod-method: 签收凭证方式
+        status: 状态
+        status-help-text: 指定触发此活动时向最终用户显示的状态。
+        logic-builder:
+            activity-logic: 活动逻辑
+            activity-logic-help-text: 定义自定义逻辑条件，决定活动在工作流中何时可用。此功能允许您根据特定条件定制流程，确保每个活动仅在满足预定义条件时触发。
+            activity-logic-add-logic-help-text: 创建新的条件集，定义活动何时应被激活。点击此按钮开始编写新的逻辑规则。
+            activity-logic-select-logic-type-help-text: 选择此条件将遵循的逻辑类型。选择"If"用于直接条件，选择"And"/"Or"用于复合条件，或选择"Not"来否定条件。
+            activity-logic-add-condition-help-text: 添加在此逻辑集中必须满足的特定要求。使用此选项指定控制活动可用性的额外条件。
+            field: 字段
+            value: 值
+            add-logic: 添加逻辑
+            types:
+                and: >-
+                    逻辑与：所有条件为真时为真
+                or: >-
+                    逻辑或：至少一个条件为真时为真
+                not: >-
+                    逻辑非：反转条件的真值
+                if: >-
+                    条件逻辑：条件为真时执行以下操作
+            operators:
+                equal: 检查两个值是否相等
+                not-equal: 检查两个值是否不相等
+                greater-than: 检查值是否大于另一个值
+                less-than: 检查值是否小于另一个值
+                greater-than-or-equal: 检查值是否大于等于另一个值
+                less-than-or-equal: 检查值是否小于等于另一个值
+                exists: 检查字段或值是否存在
+                has: 检查对象是否具有特定属性或集合是否包含特定元素
+                contains: 检查字符串是否包含另一个字符串，或数组是否包含特定元素
+                begins-with: 检查字符串是否以指定子字符串开头
+                ends-with: 检查字符串是否以指定子字符串结尾
+                in: 检查值是否在给定集合或范围内
+                not-in: 检查值是否不在给定集合或范围内
+                and: 逻辑与，两个操作数都为真时为真
+                or: 逻辑或，至少一个操作数为真时为真
+                not: 逻辑非，反转真值
+        event-selector:
+            activity-events: 活动事件
+            activity-events-select-to-fire: 选择在此活动发生时将激活的事件。
+            activity-events-select-events-info: 选择您要触发以响应此活动的特定事件。
+            select-event-to-add: 选择要添加的事件...
+            events:
+                order:
+                    dispatched: 订单成功派发时触发。
+                    failed: 订单因错误或异常而失败时触发。
+                    canceled: 订单被用户、司机或系统流程取消时触发。
+                    completed: 订单由司机或系统流程完成时触发。
+
+contact:
+    fields:
+        contact-details: 联系人详情
+        upload-new-photo: 上传新照片
+
+customer:
+    fields:
+        customer-details: 客户详情
+        select-address: 选择地址
+        new-address: 新地址
+        select-user: 选择用户
+        send-welcome-email: 发送客户门户欢迎邮件
+        send-welcome-email-help-text: 生成临时密码并通过邮件发送客户门户登录链接。
+        upload-new-photo: 上传新照片
+        user-account: 用户账户
+        user-account-help-text: 每个客户档案需要关联特定用户账户。此关联用于处理身份验证，确保每个客户可以安全地访问和管理其档案及其他服务。
+
+custom-entity:
+    fields:
+        description: 描述
+        details: 详情
+        entity-image: 实体图片
+        height: 高度
+        height-text: 高度文本
+        length: 长度
+        length-text: 长度文本
+        measurements: 尺寸
+        name: 名称
+        type: 类型
+        weight: 重量
+        weight-text: 重量文本
+        width: 宽度
+        width-text: 宽度文本
+
+driver:
+    fields:
+        avatar: 头像
+        driver-details: 司机详情
+        select-user: 选择用户
+        select-vehicle: 选择车辆
+        upload-new-photo: 上传新照片
+        user-account: 用户账户
+        user-account-help-text: 每个司机档案需要关联特定用户账户。此关联用于处理身份验证，确保每个司机可以安全地访问和管理其档案。
+        vendor: 供应商
+        select-vendor: 选择供应商
+        driver-license: 驾驶证
+        license-expiry: 驾照到期日
+        no-vehicle-assigned: 未分配车辆
+    actions:
+        unassign-orders: 取消分配订单
+        unassign-vehicle: 取消分配车辆
+        create-issue: 创建问题工单
+        assign-order: 分配订单给司机
+        assign-vehicle: 分配车辆给司机
+        locate-driver: 在地图上定位司机
+
+    prompts:
+        assign-order-title: "分配订单给{driverName}"
+        assign-order-success: 订单已分配给{driverName}。
+        select-order-warning: "选择要分配的订单。"
+        assign-vehicle-title: "分配车辆给{driverName}"
+        assign-vehicle-success: "车辆已分配给{driverName}。"
+        select-vehicle-warning: 选择要分配的车辆。
+        no-assigned-orders-warning: 未找到{driverName}的已分配订单。
+        select-orders-warning: 至少选择一个要取消分配的订单。
+        unassign-orders-title: 取消分配{driverName}的订单
+        confirm-unassign-orders-title: 取消分配{count}个订单从{driverName}？
+        confirm-unassign-orders-body: "这将移除{driverName}的这些订单：{orders}。"
+        unassign-orders-success: 已取消分配{driverName}的{count}个订单。
+        no-vehicle-assigned-warning: "{driverName}未分配车辆。"
+        unassign-vehicle-title: 取消分配{driverName}的{vehicleName}？
+        unassign-vehicle-body: 这将移除{driverName}的{vehicleName}。订单分配不受影响。
+        unassign-vehicle-success: 已取消分配{driverName}的{vehicleName}。
+        issue-title: 为{driverName}报告的问题
+device:
+    fields:
+        title: 设备详情
+        device-name: 设备名称
+        device-name-placeholder: 设备名称
+        device-type: 设备类型
+        device-type-placeholder: 选择设备类型
+        device-id: 设备ID
+        device-id-placeholder: 设备ID
+        device-provider: 设备提供商
+        device-provider-placeholder: 设备提供商
+        device-model: 设备型号
+        device-model-placeholder: 设备型号
+        manufacturer: 制造商
+        manufacturer-placeholder: 制造商
+        serial-number: 序列号
+        serial-number-placeholder: 序列号
+        device-location: 设备位置
+        device-location-placeholder: 设备位置
+        installation-date: 安装日期
+        installation-date-placeholder: 选择安装日期
+        last-maintenance-date: 上次维护日期
+        last-maintenance-date-placeholder: 选择上次维护日期
+        data-frequency: 数据频率
+        data-frequency-placeholder: 数据频率
+        status: 状态
+        status-placeholder: 选择状态
+        telematic: 远程信息设备
+        telematic-placeholder: 选择远程信息设备
+        warranty: 保修
+        warranty-placeholder: 选择保修
+        notes: 备注
+        notes-placeholder: 备注
+
+    actions:
+        attach-device: 添加设备
+        attach-to-vehicle: 关联到车辆
+        detach-from-vehicle: 从车辆分离
+    prompts:
+        attach-to-vehicle-title: 关联设备到车辆
+        attach-device-to-vehicle-title: "关联{deviceName}到车辆"
+        select-vehicle-warning: 选择要关联此设备的车辆。
+        attach-to-vehicle-success: 设备已关联到车辆。
+        not-attached-warning: "{deviceName}未关联到车辆。"
+        detach-from-vehicle-title: "从车辆分离{deviceName}？"
+        detach-from-vehicle-body: "这将从{vehicleName}分离{deviceName}并停止车辆遥测更新，直到重新关联。"
+        detach-from-vehicle-success: 设备已从车辆分离。
+        select-device-to-attach-title: "选择要关联到{resourceName}的设备"
+        confirm-attach-device: "确认并关联设备"
+        attach-device-success: 设备关联成功。
+        detach-from-resource-title: "从{resourceName}分离{deviceName}？"
+        detach-from-resource-body: "这将从{resourceName}分离{deviceName}并停止此{resourceType}的遥测更新和事件。"
+        detach-from-resource-success: "已从{resourceName}分离{deviceName}。"
+        detach-telematic-device-title: "从车辆分离{deviceName}？"
+        detach-telematic-device-body: "{deviceName}将继续从提供商同步，但不再映射到车辆。"
+        no-devices-attached-title: 未关联设备
+        no-devices-attached-body: '点击上方的"添加设备"开始接收此{resourceType}的遥测数据。'
+entity:
+    fields:
+        declare: 申报价值
+        declare-text: 申报价值文本
+        description: 描述
+        description-text: 描述文本
+        height: 高度
+        height-text: 高度文本
+        id-text: ID文本
+        length: 长度
+        length-text: 长度文本
+        measurement-title: 尺寸标题
+        name-text: 名称文本
+        price: 价格
+        price-text: 价格文本
+        price-title: 价格标题
+        sale-price: 售价
+        sale-price-text: 售价文本
+        sku: SKU
+        sku-text: SKU文本
+        weight: 重量
+        weight-text: 重量文本
+        width: 宽度
+        width-text: 宽度文本
+
+fleet:
+    fields:
+        fleet-details: 车队详情
+        fleet-name: 车队名称
+        parent-fleet: 上级车队
+        select-parent-fleet: 选择上级车队
+        select-service: 选择服务区域
+        select-status: 选择状态
+        select-status-fleet: 选择车队状态。
+        select-vendor: 选择供应商
+        select-zone: 选择区域
+        service-title: 分配到服务区域
+        task-mission-title: 任务/使命
+        task-text: "如适用，描述此车队的主要任务或使命。"
+        zone-title: 分配到区域
+        active-manpower: 在岗人数
+        task: 任务
+    driver-listing:
+        search-driver: 搜索车队中的司机
+        add-driver: 添加司机到车队
+        loading-message: 正在加载车队司机...
+    vehicle-listing:
+        search-vehicle: 搜索车队中的车辆
+        add-vehicle: 添加车辆到车队
+        loading-message: 正在加载车队车辆...
+    actions:
+        assign-vehicle: 分配车辆到车队
+        assign-driver: 分配司机到车队
+
+    prompts:
+        assign-driver-title: 分配司机到{fleetName}
+        assign-vehicle-title: 分配车辆到{fleetName}
+        select-driver-warning: 选择要分配的司机。
+        select-vehicle-warning: 选择要分配的车辆。
+        assign-driver-success: 司机已分配到{fleetName}。
+        assign-vehicle-success: 车辆已分配到{fleetName}。
+fuel-report:
+    fields:
+        details: 燃油报告详情
+        reporter: 报告人
+        select-reporter: 选择报告人
+        fuel-cost: 燃油费用
+        odometer: 里程表
+        select-volume-help-text: 选择燃油的计量单位和容量。
+        fuel-volume: 燃油/容量
+
+issue:
+    fields:
+        title: 标题
+        add-tags: 添加标签
+        assigned-to: 分配给
+        category: 问题分类
+        issue-report: 问题报告
+        priority: 问题优先级
+        report: 问题报告
+        reported-by: 报告人
+        select-assign: 选择负责人
+        select-category: 选择问题分类
+        select-priority: 选择问题优先级
+        select-reporter: 选择报告人
+        select-status: 选择问题状态
+        select-type: 选择问题类型
+        tags: 问题标签
+        type: 问题类型
+
+order:
+    card:
+      linked-order: 关联订单
+      unknown-order: 未知订单
+      no-type: 无类型
+      pickup: 取货
+      dropoff: 送达
+      return: 返回
+      waypoints: 航点
+      additional-stop: 额外停靠点
+      additional-stops: 额外停靠点
+      no-pickup-address: 无取货地址
+      no-dropoff-address: 无送达地址
+      no-route-details: 无路线详情。
+      no-order-linked: 没有关联到此问题的订单。
+    fields:
+        ad-hoc: 临时调度
+        ad-hoc-help-text: 开启临时调度将允许订单智能通知取货点附近的司机，第一个可用的司机可以接单。这是手动分配司机的替代方案，适用于实时订单。
+        add-entity: 添加实体
+        add-item-button: 添加项目
+        add-item-order: 添加项目到订单
+        add-waypoint: 添加航点
+        add-waypoint-help-text: '使用"添加航点"按钮为订单添加更多停靠点。Fleetbase路线引擎将在每次添加或删除停靠点时自动优化路线。'
+        adhoc-ping: 临时通知距离
+        adhoc-ping-help-text: 此设置确定临时通知的距离，如未设置将使用默认设置。
+        adhoc-ping-message: 距离单位必须为米
+        apply-service-rate: 应用服务费率
+        assign-driver: 分配司机
+        assign-driver-help-text: 分配此订单将派发给的司机。
+        assign-driver-placeholder: 选择司机
+        assign-vehicle: 分配车辆
+        assign-vehicle-help-text: 分配执行此订单的车辆。
+        assign-vehicle-placeholder: 选择车辆
+        breakdown: 明细
+        customer: 客户
+        customer-help-text: '可选择分配订单的客户。如果是新客户，使用上方的"新建客户"按钮。'
+        customer-placeholder: 选择客户
+        dispatch: 派发
+        dispatch-help-text: 开启派发将在创建后立即派发此订单。
+        documents-panel-title: '文档和文件'
+        dropoff: 送达
+        edit-address: 编辑地址
+        edit-item: 编辑项目
+        facilitator: 协调方
+        facilitator-help-text: 可选择分配此订单的协调方，协调方可以是第三方分包商或促进此订单运输的服务方。
+        facilitator-placeholder: 选择协调方
+        info-text: 选择实时服务报价应用到此订单。报价应用后将成为采购费率。交易将在Fleetbase账本中跟踪。
+        internal-id: 内部ID
+        internal-id-help-text: 使用此字段可选设置订单的自定义标识符或内部标识符。
+        invalid-coordinates: '坐标无效！'
+        items-drop: 项目送达于
+        loading-message: 正在加载服务报价...
+        updating-service-quotes-message: 正在更新服务报价...
+        notes-placeholder: 在此输入订单备注...
+        notes-title: 备注
+        optimize-route: 优化路线
+        optimize-route-help-text: Fleetbase将自动优化路线。
+        order-type: 订单类型
+        order-type-help-text: 选择订单类型将告知Fleetbase使用哪种订单配置。
+        order-type-placeholder: 选择订单类型
+        payload-entities: 货物/实体
+        pickup: 取货
+        proof-delivery: 签收凭证
+        proof-delivery-help-text: 选择要求的签收凭证类型。可以是二维码扫描或签名方式。
+        proof-delivery-placeholder: 选择签收凭证方式
+        refresh-button: 刷新
+        require-proof: 要求签收凭证
+        require-proof-help-text: 开启此选项将要求司机完成签收凭证。
+        return: 返回
+        route: 路线
+        route-error: 路线优化失败，请检查路线输入后重试。
+        route-label: "多目的地"
+        schedule: 日程安排
+        schedule-help-text: 订单将派发的日期和时间。如果派发时未分配司机，派发将失败。如果订单为临时调度，订单将通知取货点附近的司机。
+        select-destination: 选择目的地
+        select-dropoff: 选择送达地
+        select-pickup: 选择取货地
+        select-return: 选择返回地
+        select-waypoint: 选择航点
+        service: 服务
+        select-service-rate: 选择服务费率
+        service-help-text: 选择已定义的服务费率以生成实时服务报价应用到此订单。
+        service-quotes-help-text: 选择要获取报价的服务费率。
+        service-type: 服务类型
+        service-type-placeholder: 选择服务类型
+        sku: SKU
+        activity: 活动
+        comments-title: 评论
+        date-dispatched: 派发日期
+        date-scheduled: 计划日期
+        date-started: 开始日期
+        driver: 司机
+        driver-assigned: 已分配司机
+        no-driver-assigned: 未分配司机
+        get-label: 获取标签
+        order-notes-updated: 订单备注已更新。
+        payload: 货物
+        proof-of-delivery: 签收凭证
+        purchase-rate-panel-title: 采购费率
+        route-panel-title: 路线
+        save-order-note: 保存订单备注
+        tracking: 追踪
+        tracking-number: 追踪号
+        vehicle-assigned: 已分配车辆
+        view-activity: 查看活动
+        no-order-activity: 无订单活动
+        waypoint-actions: 航点操作
+        documents-files: 文档和文件
+        order-metadata: 订单元数据
+        order-label: 订单标签
+        waypoint-label: 航点标签
+        current-eta: 当前预计到达时间
+        ect: 预计完成时间
+        current-destination: 当前目的地
+        no-service-quotes: 无服务报价。
+        input-order-routes: 输入订单路线以查看服务报价。
+        service-quote-info: 选择实时服务报价应用到此订单。报价应用后将成为采购费率。交易将在Fleetbase账本中跟踪。
+    prompts:
+        update-details-success: '{orderId}详情已更新。'
+        route-error: 路线优化失败，请检查路线输入后重试。
+        route-update-success: '{orderId}路线详情已更新。'
+        unassign-driver-title: 确定要取消分配此订单的司机（{driverName}）吗？
+        unassign-driver-body: 取消分配后，司机将无法再访问此订单详情。
+        unassign-driver-success: 已取消分配此订单的司机。
+        no-driver-assigned-error: 此订单未分配司机。
+        failed-to-load-order-label: 加载订单标签失败。
+        failed-to-load-waypoint-label: 加载航点标签失败。
+        unable-to-add-entity: 无法添加新实体到订单。
+        assign-driver-success: 司机（{driverName}）已分配到订单{orderId}。
+        cancel-title: 确定要取消此订单吗？
+        cancel-body: 订单取消后，订单记录仍可见但无法再添加活动。
+        cancel-success: 订单{orderId}已取消。
+        dispatch-title: 确定要派发此订单吗？
+        dispatch-body: 订单派发后将通知已分配的司机。
+        dispatch-success: 订单{orderId}已派发。
+        order-bulk-search: 输入逗号分隔的订单ID或追踪号进行批量搜索
+    actions:
+        create-new-customer: 创建新客户
+        create-new-facilitator: 创建新协调方
+        create-new-place: 创建新地点
+        change-driver: 更换司机
+        assign-driver: 分配司机
+        update-activity: 更新活动
+        reload-activity: 重新加载活动
+        view-activity-as-timeline: 时间线视图
+        view-activity-as-list: 列表视图
+        cancel-order: 取消订单
+        dispatch-order: 派发订单
+        dispatch-orders: 批量派发
+        assign-driver-to-orders: 分配司机到订单
+        edit-order-details: 编辑订单详情
+        edit-order-route: 编辑订单路线
+        edit-order-metadata: 编辑订单元数据
+        update-order-activity: 更新订单活动
+        submit-new-activity: 提交新活动
+        add-entity: 添加实体
+        unassign-driver-name: >-
+            取消分配司机：{driverName}
+    schedule-card:
+        destination: 目的地
+        unassign-driver: 取消分配司机？
+        unassign-text: 您即将取消分配订单{orderId}的司机。点击继续确认移除司机。
+        unassign-button: 继续并取消分配司机
+        assign-driver: 分配新司机？
+        assign-text: 您即将为订单{orderId}分配新司机（{driverName}）。点击继续确认分配。
+        assign-button: 继续并分配司机
+        date: 计划日期
+        date-created: 创建日期
+        driver-assigned: 司机
+        vehicle-assigned: 车辆
+        no-driver: 无司机
+        no-vehicle: 无车辆
+        select-driver: 选择司机
+        select-vehicle: 选择车辆
+    kanban:
+        status-updated: 订单活动已更新为{status}状态。
+        cannot-update-status: 订单无法移至{status}状态。
+
+order-config-manager:
+    title: 订单配置
+    message: 订单配置允许您定义动态配置，告知Fleetbase不同类型的订单应如何执行。
+    configuration: 配置
+    new-order-config: 新建订单配置
+    select-order-config: 选择订单配置
+    create-new-title: 创建新订单配置
+    create-warning-message: 订单配置需要名称
+    create-success-message: 新订单配置创建成功。
+    no-order-config-selected: 未选择订单配置。
+    saved-success-message: '{orderConfigName}配置已保存。'
+    cloned-success-message: 订单配置克隆成功。
+    enter-clone-name: 输入克隆配置的名称
+    no-config-name-warning-message: 未输入配置名称。
+    delete-warning-message: 删除此订单配置后将无法再使用它创建订单。确定吗？
+    uninstall-order-config: 卸载配置
+    uninstall-order-config-success-message: 扩展{extensionName}已卸载。
+    select-order-config-to-start: 选择或创建订单配置开始。
+    tabs:
+        details: 详情
+        custom-fields: 自定义字段
+        activity-flow: 活动流程
+        entities: 实体
+    details:
+        details: 详情
+        name: 名称
+        description: 描述
+        tags: 标签
+        add-tags: 添加标签
+        key: 键
+        version: 版本
+        namespace: 命名空间
+        controls: 控制
+        delete-config: 删除配置
+        delete:
+            delete-title: 删除此订单配置？
+            delete-body-message: 删除后无法恢复，您将失去所有配置。
+            confirm-delete: 删除
+    activity-flow:
+        save-activity-flow: 保存活动流程
+        edit-activity-unique-code-warning: 活动代码必须唯一！
+    custom-fields:
+        new-field-group: 新建字段组
+        new-custom-field: 创建新自定义字段
+        grid-size: 网格大小
+        delete-custom-field-prompt:
+            modal-title: 删除此自定义字段？
+            delete-body-message: 删除后无法恢复，您将失去所有配置。
+            confirm-delete: 删除
+        delete-custom-field-group-prompt:
+            modal-title: 删除此字段组？
+            delete-body-message: 删除后无法恢复，您将失去组内所有自定义字段。
+            confirm-delete: 删除
+    entities:
+        new-custom-entity: 新建自定义实体
+        name: 名称
+        description: 描述
+        type: 类型
+        length: 长度
+        width: 宽度
+        height: 高度
+        weight: 重量
+        delete-custom-entity-title: 删除此自定义实体？
+        delete-custom-entity-body: 删除后无法恢复，您将失去所有配置。
+        confirm-delete: 确认
+    types:
+        no-order-installed: 未安装任何订单配置！
+        you-have-no-configs: 您当前未安装任何订单配置，请在扩展中安装订单配置以开始使用。
+        view-extensions: 查看扩展
+
+place:
+    fields:
+        details: 地点详情
+        building: 楼栋
+        neighborhood: 社区
+        postal-code: 邮编
+        security-access-code: 安保通行码
+        city: 城市
+        province: 省份
+        country: 国家
+        state: 州/省
+        street-1: 街道1
+        street-2: 街道2
+        coordinates: 坐标
+        phone: 电话
+    prompts:
+        vendor-assigned-success: 已分配{placeName}为新的供应商位置。
+    actions:
+        locate-place: 在地图上定位地点
+
+service-area:
+    fields:
+        details: 服务区域详情
+        area-color: 填充颜色
+        area-color-help-text: 自定义此服务区域的填充颜色。
+        border-color: 边框颜色
+        border-color-help-text: 自定义此服务区域的边框颜色。
+        country: 国家
+        country-help-text: 可选设置此服务区域所在或基于的国家。
+        name: 名称
+        name-help-text: 设置服务区域的显示名称。
+        type: 类型
+        type-help-text: 选择此服务区域的类型定义。
+
+service-rate:
+    fields:
+        details: 服务费率详情
+        terms: 条款
+        add-drop-off-button: 添加送达范围
+        additional-fee: 附加费用
+        algorithm-help-text: 定义此服务费率计算的公式。
+        algorithm-label: 算法
+        algorithm-placeholder: >-
+            (( '{distance}' / 50 ) * .05 ) + (( '{time}' / 60 ) * .01)
+        base-fee-help-text: 设置此服务的最低费用。
+        base-fee-label: 基础费用
+        calculation-method-help-text: 货到付款手续费的计算方法。
+        calculation-method-label: 货到付款手续费计算方法
+        calculation-method-placeholder: 选择货到付款手续费计算方法
+        cash-delivery-label: '为"货到付款"订单启用附加费？'
+        cash-delivery-title: 货到付款
+        custom-algorithm-info-message: "此选项可使用变量定义服务费的自定义计算。"
+        custom-algorithm-info-second-message: 注意变量必须用单花括号包裹。
+        custom-algorithm-title: 自定义算法
+        delivery-flat-fee: 货到付款固定手续费
+        delivery-flat-fee-help-text: 定义高峰时段的固定附加费。
+        deminsions-unit: 尺寸单位
+        distance: 距离
+        distance-continue-message: >-
+            - 订单路线的距离（米）。
+        distance-message: 距离
+        distance-unit: 距离单位
+        distance-unit-help-text: 距离单位可以是公里或米。
+        distance-unit-placeholder: 选择距离单位。
+        duration-terms-help-text: 添加关于此服务费率持续时间的额外服务条款。
+        duration-terms-label: 时长条款
+        duration-terms-placeholder: 时长条款（如适用）
+        estimated-days: 预计送达天数
+        estimated-days-help-text: '此服务预计需要的天数。当日达服务使用"0"。'
+        example: 示例
+        example-message: 如果订单距离为2,200米，预计时间为30分钟。
+        example-second-message: 则以下公式将计算出2.50美元的服务费，加上基础费用。
+        fee: 费用
+        fee-percentage: 货到付款手续费百分比
+        fee-percentage-help-text: 从服务费率小计中按百分比计算货到付款手续费。
+        fixed-meter: 固定里程选项
+        fixed-meter-example-text: >-
+            例如：每1公里设定固定费用。如果订单行驶距离为3,300米，则第3公里的固定费用将加入基础费用。
+        fixed-meter-text: 此选项定义每公里的固定费用。
+        flat-fee-help-text: 定义高峰时段的固定附加费。
+        flat-fee-label: 高峰时段固定费用
+        height-label: 高度
+        height-placeholder: '高度（{parcelFeeDimension}）'
+        length-label: 长度
+        length-placeholder: '长度（{parcelFeeDimension}）'
+        max: 最大
+        max-drop: 最大送达数
+        maximum-distance: 最大距离
+        maximum-distance-help-text: 可服务的最大距离。
+        min: 最小
+        min-drop: 最小送达数
+        order-type-placeholder: 订单类型占位符
+        peak-hours-end-help-text: 定义高峰时段费用结束时间。
+        peak-hours-end-label: 高峰时段结束
+        peak-hours-fee-help-text: 高峰时段费用的计算方法。
+        peak-hours-fee-label: 高峰时段费用计算方法
+        peak-hours-fee-placeholder: 选择高峰时段费用计算方法
+        peak-hours-label: '为服务定义的"高峰时段"订单启用附加费？'
+        peak-hours-percentage-help-text: 从服务费率小计中按百分比计算高峰时段附加费。
+        peak-hours-percentage-label: 高峰时段费用百分比
+        peak-hours-start-help-text: 定义高峰时段费用开始时间。
+        peak-hours-start-label: 高峰时段开始
+        peak-hours-title: 高峰时段
+        per-drop-off-example-text: >-
+            例如：订单中1-5个送达点收费x元，5-10个送达点收费x元。此费用将加入基础费用。
+        per-drop-off-text: 此选项定义每个送达点的固定费用。
+        per-drop-off-title: 每送达点选项
+        per-meter: 按米计费
+        per-meter-example-text: >-
+            例如：'{fee}' * '{distance}' + '{baseFee}'
+        per-meter-rate-fee: 按米固定费率
+        per-meter-rate-fee-help-text: 乘以距离的固定费率。
+        per-meter-text: 此选项允许按公里或米计算服务费，即定义一个固定费率乘以距离（米或公里）。
+        percel-fee-title: "包裹费用"
+        percentage-placeholder: 百分比
+        rate-calculation-help-text: 查询时此服务用于计算费率的方法。
+        rate-calculation-label: 费率计算方法
+        rate-calculation-placeholder: 选择费率计算方法
+        restrict-service-title: 限制服务
+        select-unit-placeholder: 选择单位
+        select-order-type: 选择订单类型
+        service-area-help-text: 将此服务限制为来自特定服务区域的订单请求。
+        service-area-label: 服务区域
+        service-area-placeholder: 限制到服务区域
+        service-name: 服务名称
+        service-name-help-text: 此服务的显示名称。
+        service-order-help-text: 选择此服务费率独占的订单配置。确保只有使用所选订单配置创建的订单才能使用此服务费率。
+        service-order-label: 服务订单类型
+        time-continue-message: >-
+            - 路线预计时间（秒）。
+        time-message: 时间
+        weight-label: 重量
+        weight-unit: 重量单位
+        width-label: 宽度
+        width-placeholder: '宽度（{parcelFeeDimension}）'
+        zone-help-text: 将此服务限制为来自特定区域的订单请求。
+        zone-label: 区域
+        zone-placeholder: 限制到区域
+        cod-fee-label: 货到付款费率标签
+
+vehicle:
+    fields:
+        avatar: 头像
+        driver-assigned: 已分配司机
+        make: 品牌
+        model: 型号
+        plate-number: 车牌号
+        select-driver: 选择司机
+        upload-new-photo: 上传新照片
+        vehicle-make: 车辆品牌
+        vehicle-model: 车辆型号
+        vehicle-year: 车辆年份
+        vin-number: 车架号
+        year: 年份
+    actions:
+        attach-device: 添加设备
+        unassign-orders: 取消分配订单
+        create-issue: 创建问题工单
+        locate-vehicle: 在地图上定位车辆
+        schedule-maintenance: 安排维护
+        create-work-order: 创建工单
+        log-maintenance: 记录维护
+
+    prompts:
+        attach-device-title: 关联设备到{vehicleName}
+        select-device-warning: 选择要关联的设备。
+        attach-device-success: 设备已关联到{vehicleName}。
+        no-assigned-orders-warning: 未找到{vehicleName}的已分配订单。
+        select-orders-warning: 至少选择一个要取消分配的订单。
+        unassign-orders-title: 取消分配{vehicleName}的订单
+        confirm-unassign-orders-title: 取消分配{count}个订单从{vehicleName}？
+        confirm-unassign-orders-body: "这将移除{vehicleName}的这些订单：{orders}。"
+        unassign-orders-success: 已取消分配{vehicleName}的{count}个订单。
+        issue-title: 为{vehicleName}报告的问题
+vendor:
+    fields:
+        setup-vendor: 设置供应商
+        choose-vendor: 选择集成供应商提供商
+        email-help-text: 供应商邮箱，可用于向供应商发送邮件。
+        name-help-text: 供应商名称，通常为企业名称。
+        phone-text: >-
+            供应商电话号码，可用于向供应商发送短信或消息。
+        website: 网站链接
+        edit-address: 编辑地址
+        new-address: 新地址
+        select-address: 选择地址
+        select-vendor-status: 选择供应商状态
+        select-vendor-type: 选择供应商类型
+        title: 设置
+        vendor-details: 供应商详情
+        website-help-text: 供应商网站，可选择添加以供参考。
+
+integrated-vendor:
+    fields:
+        provider: 提供商
+        credentials: 凭证
+        credentials-configure-help-text: 可选提供您自己的{param}来配置此供应商。
+        options: 选项
+        choose-vendor: 选择集成供应商提供商
+        select-integrated: 选择集成供应商提供商。
+        advanced-options: 高级选项
+        cancel-credentials: 取消凭证重置
+        sensitive-credentials: 敏感凭证只能重置，更新凭证需重新输入。
+        reset-credentials: 点击此处重置凭证
+        sandbox: 沙盒模式
+        webhook: Webhook URL
+        webhook-help-text: 集成供应商通常需要此项以便Fleetbase接收订单活动更新。除非您清楚操作，否则请勿更改！更改此项可能破坏您的订单更新！
+        host: 自定义主机
+        host-help-text: 可选提供用于此集成的自定义主机。
+        namespace: 自定义命名空间
+        namespace-help-text: 可选提供用于集成的自定义命名空间或API版本。
+
+zone:
+    fields:
+        details: 区域详情
+        border-color: 边框颜色
+        customize-border: 自定义边框
+        customize-fill-color: 自定义填充颜色
+        description: 描述
+        name: 名称
+        name-help-text: 输入此区域的名称。
+        zone-color: 区域颜色
+
+# Legacy Translations Refactoring IN Progress
+activity-logic-builder:
+    activity-logic: 活动逻辑
+    activity-logic-help-text: 定义自定义逻辑条件，决定活动在工作流中何时可用。此功能允许您根据特定条件定制流程，确保每个活动仅在满足预定义条件时触发。
+    activity-logic-add-logic-help-text: 创建新的条件集，定义活动何时应被激活。点击此按钮开始编写新的逻辑规则。
+    activity-logic-select-logic-type-help-text: 选择此条件将遵循的逻辑类型。选择"If"用于直接条件，选择"And"/"Or"用于复合条件，或选择"Not"来否定条件。
+    activity-logic-add-condition-help-text: 添加在此逻辑集中必须满足的特定要求。使用此选项指定控制活动可用性的额外条件。
+    field: 字段
+    value: 值
+    add-logic: 添加逻辑
+
+activity-event-selector:
+    activity-events: 活动事件
+    activity-events-select-to-fire: 选择在此活动发生时将激活的事件。
+    activity-events-select-events-info: 选择您要触发以响应此活动的特定事件。
+    select-event-to-add: 选择要添加的事件...
+
+custom-field-form-panel:
+    meta-col-span: '元数据：列跨度'
+    col-span-size: 列跨度大小
+    custom-field-title-concat: '自定义字段：'
+    new-custom-field: 新建自定义字段
+    close-new-custom-field: 取消自定义字段更改
+    save-custom-field: 保存更改
+    create-custom-field: 创建新字段
+    field-name: 字段名称
+    field-label: 字段标签
+    field-type: 字段类型
+    select-field-type: 选择字段类型...
+    field-description: 字段描述
+    field-help-text: 字段帮助文本
+    field-default-value: 字段默认值
+    field-is-required: 必填字段
+    field-is-editable: 可编辑字段
+    field-options: 字段选项
+    field-validation-rules: 字段验证规则
+    field-model-type: 字段模型类型
+    field-select-model-type: 选择模型类型
+    add-new-option: 添加新选项
+
+activity-form-panel:
+    title-concat: '活动：'
+    new-activity-title: 创建新活动
+    key: 键
+    code: 代码
+    status: 状态
+    details: 详情
+    proof-of-delivery: 签收凭证
+    require-pod: 需要签收凭证
+    require-pod-help-text: 此活动要求在应用于订单之前创建签收凭证。
+    select-pod-method: 签收凭证方式
+    pod-method-placeholder: 选择签收凭证方式
+    completes-order: 完成订单
+    complete: 完成
+    key-help: '输入用于程序化决策的键。此键可以代表一个或多个具有相同标识符的活动。注意：此键不要求唯一。'
+    code-help: 输入此活动的唯一标识符。
+    status-help: 指定触发此活动时向最终用户显示的状态。
+    details-help: 为最终用户提供活动的详细描述。
+custom-entity-issue-form-panel:
+    new-custom-entity: 新建自定义实体
+    name: 名称
+    description: 描述
+    details: 详情
+    type: 类型
+    length: 长度
+    width: 宽度
+    height: 高度
+    weight: 重量
+    entity-image: 实体图片
+    measurements: 尺寸
+
+avatar-picker:
+    avatar: 头像
+    select-map-avatar: 选择地图头像
+
+    select-avatar-rendering: 选择用于地理位置追踪功能时在地图上渲染的头像。
+    select-avatar: 选择头像
+    select-for-preview: 选择以预览
+
+admin:
+    navigator-app:
+        title: 导航应用
+        name: 实例链接URL
+        message: 使用此URL将官方导航应用链接到此{companyName}实例。在移动设备上打开此URL将打开导航应用并更新其配置和品牌。
+        settings: 实体设置
+        select-input: 允许司机更新实体详情
+        driver-settings: 司机设置
+        description: 启用司机入职
+        upload-document: 要求司机上传文档
+        upload-body: 添加文档
+        document: 文档
+    avatar-management:
+        upload-avatar: 上传头像
+        view-avatar: 查看头像
+        vehicles: 车辆
+        drivers: 司机
+        places: 地点
+
+entity-field-editing-settings:
+    entitiy-field-editing-settings: 实体字段编辑设置
+    entity-field-editing-settings-help-text: 这些设置决定司机可通过导航应用编辑哪些实体字段
+    select-order-config: 选择订单配置
+    select-order-config-help-text: 选择应用此设置的订单配置
+    enable-driver-to-edit-entity-fields: 允许司机编辑实体详情
+    enable-driver-to-edit-entity-fields-help-text: 开启此选项允许司机修改下方选择的特定实体字段。
+
+driver-onboard-settings:
+    driver-onboard-settings: 司机入职设置
+    enable-driver-onboard-from-app: 从导航应用启用司机入职
+    enable-driver-onboard-from-app-help-text: 开启此设置允许司机通过导航应用自行入职（创建自己的账户）。
+    select-onboard-method: 选择司机入职方式
+    select-onboard-method-help-text: 此设置决定司机如何通过导航应用创建账户。选择"邀请"如果司机需要通过邮件邀请创建账户。选择"按钮"如果您希望在应用中启用一个允许任何人创建司机账户的按钮。
+    require-driver-to-upload-onboard-documents: 要求司机上传入职文档
+    require-driver-to-upload-onboard-documents-help-text: 此设置强制要求司机在创建账户前必须提供的文档。
+    required-onboard-documents: 所需入职文档
+    required-onboard-documents-help-text: 使用下方"添加入职文档"按钮输入司机需要提供的所有入职文档。
+    enter-document-name: 输入文档名称
+    add-onboard-document: 添加入职文档
+
+cell:
+    driver-name:
+        not-assigned: 未分配司机
+
+live-map-drawer:
+    driver-listing:
+        location: 位置
+        current-job: 当前任务
+        last-seen: 最后出现
+        view-driver: 查看司机详情...
+        edit-driver: 编辑司机...
+        locate-driver: 定位司机...
+        delete-driver: 删除司机...
+        warning-message: 无法定位司机。
+        message: 按关键词筛选司机...
+    place-listing:
+        location: 位置
+        place: 地点
+        view-place: 查看地点详情...
+        edit-place: 编辑地点...
+        locate-place: 定位地点...
+        delete-place: 删除地点...
+        warning-message: 无法定位地点。
+        message: 按关键词筛选地点...
+    vehicle-listing:
+        location: 位置
+        last-seen: 最后出现
+        view-vehicle: 查看车辆详情...
+        edit-vehicle: 编辑车辆...
+        locate-vehicle: 定位车辆...
+        delete-vehicle: 删除车辆...
+        warning-message: 无法定位车辆。
+        message: 按关键词筛选车辆...
+
+scheduler:
+    success-message: 订单{orderId}已安排在{orderAt}。
+    info-message: 订单{orderId}已取消安排。
+    title: 调度器
+    unscheduled-orders: 未安排订单
+    scheduled-orders: 已安排订单
+    unauthorized-to-schedule: 您无权安排订单。
+    scheduling-for: 正在安排{orderId}
+    add-shift: 添加班次
+    create-shift: 创建班次
+    edit-shift: 编辑班次
+    delete-shift: 删除班次
+    delete-shift-confirm: 确定要删除此班次吗？此操作无法撤销。
+    shift-created: 班次创建成功。
+    shift-updated: 班次更新成功。
+    shift-title: 班次标题
+    shift-title-placeholder: 例如：早间配送
+    shift-start: 班次开始
+    shift-end: 班次结束
+    shift-notes-placeholder: 班次的可选备注
+    select-start-datetime: 选择开始日期和时间
+    select-end-datetime: 选择结束日期和时间
+    select-driver: 选择司机
+    upcoming-shifts: 即将到来的班次
+    no-upcoming-shifts: 没有即将到来的班次。
+    hours-of-service: 工作时间
+    daily-driving-hours: 每日驾驶时间
+    weekly-hours: 每周时间
+    compliance-status: 合规状态
+    set-availability: 设置可用性
+    availability-set: 可用性保存成功。
+    availability-time-off: 可用性和休假
+    no-availability-restrictions: 未设置可用性限制。
+    available: 可用
+    unavailable: 不可用
+    unavailable-time-off: 不可用/休假
+    availability-type: 可用性类型
+    request-time-off: 申请休假
+    submit-request: 提交申请
+    time-off-requested: 休假申请已提交。
+    delete-availability: 删除可用性
+    delete-availability-confirm: 确定要删除此可用性记录吗？
+    availability-deleted: 可用性记录已删除。
+    start-date: 开始日期
+    end-date: 结束日期
+    select-start-date: 选择开始日期
+    select-end-date: 选择结束日期
+    reason: 原因
+    reason-placeholder: 例如：个人事务
+    notes-placeholder: 可选的额外备注
+    shift: 班次
+    add-shift-hint: 点击"添加班次"安排新班次。
+    time-off-exceptions: 休假和例外
+    no-exceptions: 未记录休假或例外。
+    exception-approved: 例外已批准。
+    exception-rejected: 例外已拒绝。
+    exception-deleted: 例外已删除。
+    delete-exception: 删除例外
+    delete-exception-confirm: 确定要删除此例外吗？
+    approve: 批准
+    reject: 拒绝
+    recurring-schedule-created: 周期性计划已创建并生成班次。
+    recurring-schedule: 周期性计划
+    is-recurring: 周期性
+    recurrence-pattern: 重复模式
+    recurrence-start-date: 开始日期
+    recurrence-end-date: 结束日期（可选）
+    template-name: 模板名称
+    template-name-placeholder: 例如：标准周
+    schedule-name: 计划名称
+    schedule-name-placeholder: 例如：标准周
+    one-off-shift: 单次班次
+    one-off-shift-help: 开启以在特定日期和时间添加单次班次，而非周期性计划。
+    template-color: 颜色
+    shift-start-time: 班次开始时间
+    shift-end-time: 班次结束时间
+    break-start-time: 休息开始时间
+    break-end-time: 休息结束时间
+    day-monday: 周一
+    day-tuesday: 周二
+    day-wednesday: 周三
+    day-thursday: 周四
+    day-friday: 周五
+    day-saturday: 周六
+    day-sunday: 周日
+    frequency-daily: 每天
+    frequency-weekly: 每周
+    frequency-monthly: 每月
+    today: 今天
+    orders-tab: 订单计划
+    fleet-schedule-tab: 车队计划
+    break-start: 休息开始
+    break-end: 休息结束
+    select-break-start: 选择休息开始时间
+    select-break-end: 选择休息结束时间
+    select-date: 选择日期
+    working-days: 工作日
+    recurrence-start: 开始日期
+    recurrence-end: 结束日期
+    recurring-schedule-help: 使用日期和时间定义周期性班次模式。系统将自动为司机创建班次。
+    shift-deleted: 班次删除成功。
+    day-mon: 一
+    day-tue: 二
+    day-wed: 三
+    day-thu: 四
+    day-fri: 五
+    day-sat: 六
+    day-sun: 日
+    view-day: 日视图
+    view-week: 周视图
+    undo: 撤销上一步
+    redo: 重做上一步
+    search-orders: 搜索订单...
+    select-all: 全选
+    all-scheduled: 所有订单已安排
+    not-scheduled: 未安排
+    expand-sidebar: 展开侧边栏
+    collapse-sidebar: 折叠侧边栏
+    bulk-assign: 分配{count}个订单
+    bulk-assign-title: 批量分配{count}个订单
+    bulk-assign-success: '{count}个订单分配成功。'
+    bulk-assign-order-count: '已选择{count}个订单进行分配'
+    bulk-assign-spacing-hint: 订单将从选定日期和时间开始按估计时长间隔顺序安排。
+    assign-to-driver: 分配给司机
+    assign-orders: 分配订单
+    orders-to-assign: '{count}个待分配订单'
+    scheduled-date: 计划日期
+    conflict-title: 检测到排程冲突
+    conflict-description: '{orderTracking}与{driverName}的现有订单重叠。'
+    conflicting-orders: 冲突订单
+    conflict-resolution-prompt: 您希望如何解决此冲突？
+    auto-adjust: 自动调整时间
+    assign-anyway: 仍然分配
+    clear-selection: 清除选择
+modals:
+    new-custom-field-group:
+        modal-title: 创建新自定义字段组
+        group-name: 组名
+
+    assign-driver:
+        select-driver: 选择司机
+        select-assign: 选择要分配的司机
+
+    clone-config-form:
+        name: 配置名称
+        description: 配置描述
+
+    driver-assign-order:
+        order: 选择订单
+        assign-order: 选择要分配的订单
+
+    driver-assign-vehicle:
+        vehicle: 选择车辆
+        assign-vehicle: 选择要分配的车辆
+
+    driver-assign-vendor:
+        vendor: 选择供应商
+
+    driver-details:
+        job: 当前任务
+        view: 在地图上查看
+
+    driver-form:
+        select-vendor: 选择供应商
+        select-vehicle: 选择车辆
+
+    edit-meta-form:
+        add: 添加元数据字段
+
+    entity-form:
+        name-text: 项目或实体名称。
+        id-text: 使用此字段可选设置实体的自定义标识符或内部标识符。
+        sku: SKU
+        sku-text: 库存单位编号（如适用）。
+        description: 描述
+        description-text: 实体的额外描述文本。
+        price-title: 定价和价值
+        price: 价格
+        price-text: 实体价格。
+        sale-price: 售价
+        sale-price-text: 实体的售价或折扣价。
+        declare: 申报价值
+        declare-text: 实体的申报价值，适用于保险。
+        measurement-title: 尺寸和重量
+        length: 长度
+        length-text: 实体的长度。
+        width: 宽度
+        width-text: 实体的宽度。
+        height: 高度
+        height-text: 实体的高度。
+        weight: 重量
+        weight-text: 实体的重量。
+
+    entity-meta-field-prompt:
+        name: 元数据字段键
+
+    fleet-form:
+        title: 车队名称
+        assign: 分配到服务区域
+        assign-text: 选择服务区域分配车队
+        zone: 分配到区域
+        zone-text: 选择区域分配车队
+        task: 任务/使命
+        task-text: 如适用，描述此车队的主要任务或使命。
+        select-task: 选择任务
+        status-text: 选择车队状态。
+        select-status: 选择状态
+
+    fuel-report-details:
+        fuel: 燃油/容量
+
+    fuel-report-form:
+        select-driver: 选择司机
+        select-vehicle: 选择车辆
+        volume: 容量
+        volume-text: 选择燃油的计量单位和容量。
+
+    group-details:
+        name: 组名
+        member: 成员
+        address: 地址
+
+    group-form:
+        title: 组名
+        users-add: 选择要添加到组的用户
+        search: 搜索并选择要添加到此组的用户。
+        select-user: 选择要添加到组的用户
+        no-users: 组中未添加用户
+
+    install-prompt:
+        message: 您正在安装扩展{extensionName}。确定要继续安装吗？
+        sub-message: 某些扩展需要访问您的资源。
+
+    issue-details:
+        assigned: 分配给
+        type: 问题类型
+        category: 问题分类
+
+    issue-form:
+        reported: 报告人
+        select-reporter: 选择报告人
+        assigned: 分配给
+        select-assignee: 选择负责人
+        select-driver: 选择司机
+        select-vehicle: 选择车辆
+        select-type: 选择类型
+        select-category: 选择分类
+        type: 问题类型
+        type-text: 选择问题类型
+        category: 问题分类
+        category-text: 选择问题分类
+        report: 问题报告
+        tags: 问题标签
+        add-tags: 添加标签
+        select-status: 选择问题状态
+
+    map-layer-form:
+        layer-type: 图层类型
+        layer-type-text: 选择您要创建的图层类型。
+        select-layer-type: 选择图层类型...
+        service-area: 服务区域
+        service-area-text: 选择要将此区域归属的服务区域。
+        select-service-area: 选择服务区域分配车队
+        set-name: 为{options}设置显示名称。
+        service-type: 服务区域类型
+        service-type-text: 选择此服务区域的类型定义。
+        select-service-type: 选择服务区域类型...
+        customize-border: 为{options}自定义边框颜色。
+        customize-fill-color: 为{options}自定义填充颜色。
+        service-area-country: 服务区域国家
+        service-area-country-text: 可选设置此服务区域所在或基于的国家。
+
+    new-order-config:
+        name: 配置名称
+        description: 配置描述
+        tags: 配置标签
+        add-tags: 添加标签
+
+    order-assign-driver:
+        select-driver: 选择司机
+        select-assign: 选择要分配的司机
+
+    order-config-new-status:
+        new-status: 新状态
+        status-text: 输入要添加到流程的新活动状态
+
+    order-event:
+        schedule: 安排
+        unschedule: 取消安排
+
+    order-form:
+        id-text: 使用此字段可选设置订单的自定义标识符或内部标识符。
+        schedule-text: 订单将派发的日期和时间。如果派发时未分配司机，派发将失败。如果订单为临时调度，订单将通知取货点附近的司机。
+        customer: 客户
+        customer-text: 可选择分配订单的客户。如果是新客户，使用上方的"新建客户"按钮。
+        select-customer: 选择客户
+        facilitator: 协调方
+        facilitator-text: 可选择分配此订单的协调方，协调方可以是第三方分包商或促进此订单运输的服务方。
+        select-facilitator: 选择协调方
+        assign-driver: 分配司机
+        assign-driver-text: 分配此订单将派发给的司机。
+        select-driver: 选择司机
+        assign-vehicle: 分配车辆
+        assign-vehicle-text: 分配执行此订单的车辆。
+        select-vehicle: 选择车辆
+
+    order-import:
+        loading-message: 正在处理导入...
+        drop-upload: 拖放上传
+        invalid: 无效
+        ready-upload: 准备上传。
+        upload-spreadsheets: 上传电子表格
+        drag-drop: 将电子表格文件拖放到此区域
+        button-text: 或选择电子表格上传
+        spreadsheets: 电子表格
+        upload-queue: 上传队列
+
+    order-label:
+        loading: 正在加载标签...
+
+    order-new-activity:
+        select-message: 选择活动状态以更新订单追踪活动，或输入自定义活动。
+        order-currently-message: 此订单当前为{options}，添加活动将覆盖此状态。
+        not-recommend-message: 除非您完全清楚操作，否则Fleetbase不建议这样做。
+        activity-options: 活动选项
+        activity: 活动
+        dispatch: 这将触发订单派发。
+        status: 自定义活动状态
+        details: 自定义活动详情
+        code: 自定义活动代码
+        fleetbase-message: 除非您完全清楚操作，否则Fleetbase不建议这样做。
+
+    order-route-form:
+        toggle: 切换多目的地
+        optimize: 优化路线
+        optimize-text: Fleetbase将自动优化路线。
+        add: 添加航点
+        add-text: 使用"添加航点"按钮为订单添加更多停靠点。Fleetbase路线引擎将在每次添加或删除停靠点时自动优化路线。
+        select-waypoint: 选择航点
+        pickup: 取货
+        edit-address: 编辑地址
+        select-pickup: 选择取货地
+        invalid: 坐标无效！
+        dropoff: 送达
+        select-dropoff: 选择送达地
+        return: 返回
+        select-return: 选择返回地
+
+    place-assign-vendor:
+        select-vendor: 选择供应商
+
+    place-details:
+        view: 在地图上查看
+
+    policy-form:
+        name: 策略名称
+        name-text: 输入策略名称
+        description: 策略描述
+        description-text: 输入策略描述
+        permissions: 选择权限
+
+    role-form:
+        name: 角色名称
+        name-text: 输入角色名称
+        permissions: 选择权限
+
+    select-payment-method:
+        card-ending: 卡尾号{method}
+
+    service-area-form:
+        name: 服务区域名称
+        name-text: 设置服务区域的显示名称。
+        type: 服务区域类型
+        type-text: 选择此服务区域的类型定义。
+        select-type: 选择服务区域类型...
+        border-color: 服务区域边框颜色
+        customize-border-color: 自定义此服务区域的边框颜色。
+        area-color: 服务区域颜色
+        customize-area-color: 自定义此服务区域的填充颜色。
+        country: 服务区域国家
+        country-text: 可选设置此服务区域所在或基于的国家。
+
+    set-password:
+        message: 欢迎使用Fleetbase！在开始之前，请在下方设置新密码。
+        new-password: 新密码
+        confirm-password: 确认密码
+        help-text: 输入至少8个字符的密码以继续。
+
+    uninstall-prompt:
+        message: 您正在卸载扩展"{options}"。确定要继续卸载吗？
+        sub-message: 所有配置和自定义设置将丢失。
+
+    vehicle-details:
+        make: 品牌
+        model: 型号
+        year: 年份
+        driver-assigned: 已分配司机
+        no-driver-assigned: 未分配司机
+        vehicle-assigned: 已分配车辆
+        no-vehicle-assigned: 未分配车辆
+        avatar: 头像
+        model-information: 车型信息
+        acceleration: 0-100公里/小时
+        body: 车身
+        doors: 车门数
+        length: 长度（毫米）
+        seats: 座位数
+        top-speed: 最高速度（公里/小时）
+        transmission: 变速箱类型
+        weight: 重量（公斤）
+        wheelbase: 轴距（毫米）
+        width: 宽度（毫米）
+        engine-information: 发动机信息
+        engine-bore: 缸径（毫米）
+        cc: 排量
+        compression: 压缩比
+        cylinder: 气缸数
+        position: 位置
+        power-ps: 功率（匹）
+        power-rpm: 功率转速（转/分）
+        stroke: 冲程（毫米）
+        torque-nm: 扭矩（牛·米）
+        torque-rpm: 扭矩转速（转/分）
+        valves: 每缸气门数
+        fuel-information: 燃油信息
+        fuel: 燃油
+        fuel-cap: 油箱容量（升）
+        liters-city: 市区油耗（升/公里）
+        liters-highway: 高速油耗（升/公里）
+        liters-mixed: 综合油耗（升/公里）
+    vehicle-form:
+        map-avatar: 选择地图头像
+        map-avatar-text: 选择用于地理位置追踪功能时在地图上渲染的头像。
+        select-avatar: 选择头像
+        make: 车辆品牌
+        model: 车辆型号
+        year: 车辆年份
+        select-driver: 选择司机
+        body: 车身类型
+        doors: 车门数
+        type: 驱动类型
+        length: 车辆长度（毫米）
+        seats: 座位数
+        top-speed: 最高速度（公里/小时）
+        transmission: 变速箱类型
+        weight: 车辆重量（公斤）
+        wheelbase: 轴距（毫米）
+        width: 车辆宽度（毫米）
+        engine-bore: 缸径（毫米）
+        cc: 排量
+        compression: 发动机压缩比
+        cylinder: 气缸数
+        position: 发动机位置
+        power-ps: 发动机功率（匹）
+        power-rpm: 发动机功率转速（转/分）
+        stroke: 冲程长度（毫米）
+        torque-nm: 发动机扭矩（牛·米）
+        torque-rpm: 发动机扭矩转速（转/分）
+        fuel-type: 燃油类型
+        fuel-cap: 油箱容量（升）
+
+    vendor-details:
+        sandbox: 沙盒模式
+        host: 主机
+        namespace: 命名空间
+
+    vendor-form:
+        choose-vendor: 选择集成供应商
+        create-vendor: 创建自定义供应商
+        credentials: 凭证
+        options: 选项
+        hide-advanced: 隐藏高级选项
+        show-advanced: 显示高级选项
+        custom-host: 自定义主机
+        host-text: 可选提供用于此集成的自定义主机。
+        custom-namespace: 自定义命名空间
+        namespace-text: 可选提供用于集成的自定义命名空间或API版本。
+        webhook: Webhook URL
+        webhook-text: 集成供应商通常需要此项以便Fleetbase接收订单活动更新。除非您清楚操作，否则请勿更改！更改此项可能破坏您的订单更新！
+        cancel-credentials: 取消凭证重置
+        reset-message: 敏感凭证只能重置，更新凭证需重新输入。
+        optionally: 可选提供您自己的
+        configure-vendor: 来配置此供应商。
+        select: 选择
+        sandbox: 沙盒模式
+        name-text: 供应商名称，通常为企业名称。
+        email-text: 供应商邮箱，可用于向供应商发送邮件。
+        phone-text: 供应商电话号码，可用于向供应商发送短信或消息。
+        website-text: 供应商网站，可选择添加以供参考。
+        select-address: 选择地址
+
+    zone-form:
+        name: 区域名称
+        name-text: 设置区域的显示名称。
+        border-color: 区域边框颜色
+        customize-border: 自定义此区域的边框颜色。
+        zone-color: 区域颜色
+        customize-fill-color: 自定义此区域的填充颜色。
+        optionally: 可选为区域添加描述。
+        description-zone: 区域描述
+
+widget:
+    refresh: 刷新
+    kpi-earnings:
+        title: 收入
+    kpi-distance:
+        title: 行驶距离
+    kpi-aov:
+        title: 平均订单价值
+    kpi-active-orders:
+        title: 活跃订单
+    kpi-drivers-online:
+        title: 在线司机
+    kpi-open-issues:
+        title: 未解决问题
+    operations-pulse:
+        title: 运营脉搏
+    revenue-trend:
+        title: 收入趋势
+    orders-by-status:
+        title: 按状态的订单量
+    on-time-delivery:
+        title: 准时送达
+    top-drivers:
+        title: 顶级司机
+    fuel-efficiency:
+        title: 燃油成本和效率
+    issues-insights:
+        title: 问题洞察
+    maintenance-overview:
+        title: 维护概览
+    geofence-violations:
+        title: 电子围栏违规
+    live-fleet:
+        title: 实时车队地图
+    get-started:
+        title: 开始使用车队运营
+        subtitle: 完成基本设置并执行首次派发流程。
+        completed: 已完成
+        preview-title: 首单流程
+    recommended-features:
+        title: 推荐功能
+        subtitle: 探索帮助新运营团队更快上手的工具。
+        learn-more: 了解更多
+    fleet-ops-quickstart:
+        message: 看看您可以做什么来快速启动运营...
+        start-task: 开始任务
+    key-metrics:
+        title: 车队运营指标
+        earnings: 收入
+        fuel-expenses: 燃油支出
+        traveled: 行驶距离
+        total-time: 总时间
+        order-scheduled: 已安排订单
+        order-completed: 已完成订单
+        order-progress: 进行中订单
+        order-canceled: 已取消订单
+        driver-online: 在线司机
+        customers: 客户
+        open-issue: 未解决问题
+        closed-issues: 已关闭问题
+    live-order-map:
+        loading: 正在加载进行中的订单...
+        assigned: 已分配司机
+        no-order: 没有进行中的订单
+        message: 订单进行中时将显示在此组件中并展示实时活动。
+    recent-orders:
+        title: 最近订单
+        loading: 正在加载最近订单...
+        no-orders: 本周无订单
+        message-part-1: 本周还没有订单，开始行动吧
+        message-part-2: 创建新订单
+        message-part-3: 或允许您的客户通过API提交订单。
+    transactions:
+        title: 最近交易
+        loading: 正在加载最近交易...
+        no-transactions: 本周无交易
+        message: 订单通过服务费率处理时，Fleetbase会自动跟踪交易。
+
+display-panel:
+    no-address: 无{type}地址！
+    no-address-message: 无地址！
+
+driver-card:
+    no-fleets: 无车队
+
+global-search:
+    search: 按关键词搜索...
+
+integrated-order-details:
+    order-id: 订单ID
+    quotation-id: 报价ID
+    driver-id: 司机ID
+    link: 分享链接
+    price-breakdown: 价格明细
+    metadata: 元数据
+
+geofence:
+    prompts:
+        use-draw-controls-create-service-area: 使用右侧绘图控件绘制服务区域，完成点连接以保存服务区域。
+        use-draw-controls-create-zone: 使用右侧绘图控件在服务区域内绘制区域，完成点连接以保存区域。
+        no-layer-found-for-resource: 未找到此{resource}的图层。
+        editing-enabled: 编辑已启用 — 调整顶点后点击编辑确认按钮应用。
+        resource-boundaries-updated: >-
+            {resource}边界更新成功。
+        edit-canceled: 编辑已取消。
+        failed-to-update-resource: 更新{resource}失败。
+
+live-map:
+    show-coordinates: 显示坐标
+    center-map: 以此处为中心
+    zoom-in: 放大
+    zoom-out: 缩小
+    toggle-draw-controls: 切换绘图控件
+    hide-draw: 隐藏绘图控件
+    enable-draw: 启用绘图控件
+    create-new-service: 创建新服务区域
+    focus-service: '聚焦服务区域：{serviceName}'
+    view-driver: '查看司机：{driverName}'
+    edit-driver: '编辑司机：{driverName}'
+    delete-driver: '删除司机：{driverName}'
+    view-vehicle-for: '查看{driverName}的车辆'
+    view-vehicle: '查看车辆：{vehicleName}'
+    edit-vehicle: '编辑车辆：{vehicleName}'
+    delete-vehicle: '删除车辆：{vehicleName}'
+    edit-zone: '编辑区域：{zoneName}'
+    delete-zone: '删除区域：{zoneName}'
+    assign-zone: '分配车队到区域：{zoneName}'
+    blur-service: '隐藏服务区域：{serviceName}'
+    create-zone: '在{serviceName}内创建区域'
+    assign-fleet: '分配车队到服务区域：{serviceName}'
+    edit-service: '编辑服务区域：{serviceName}'
+    delete-service: '删除服务区域：{serviceName}'
+    service-area: 服务区域
+    edit-boundaries: '编辑边界：{resource}'
+    zone: 区域
+
+order-config:
+    create-new-title: 创建新订单配置
+    warning-message: 订单配置需要名称
+    success-message: 新订单配置创建成功。
+    no-order-warning: 未选择订单配置。
+    saved-success: '{orderName}订单配置已保存。'
+    enter-name-title: 输入克隆配置的名称
+    no-config-warning: 未输入配置名称。
+    cloned-success: 订单配置克隆成功。
+    body: 删除此订单配置后将无法再使用它创建订单。确定吗？
+    uninstall-title: 卸载配置
+    uninstall-success: 扩展{extensionName}已卸载。
+    activity-flow-editor:
+        add-status: 添加新状态到流程
+        no-status: 未输入状态。
+        overwrite: 这将覆盖现有状态！
+        overwrite-text: 流程中已存在另一个{statusName}状态，如果继续此状态将被覆盖。是否覆盖之前的{statusName}状态？
+        overwrite-button: 是，覆盖！
+        remove: 移除状态
+        remove-text: 确定要删除此状态吗？所有相关活动和逻辑将随状态一起删除。
+        delete-button: 是，删除
+        unable-warning: "{status}必须按此顺序排列，无法移动。"
+        order-warning: 已创建的状态必须始终是订单流程的第一个序列。
+        title: 活动流程
+        message: 活动流程配置允许您定义适用于此订单类型的不同追踪状态活动。还可以配置活动流程的逻辑。
+        order-flow: 订单流程
+        waypoint-flow: 航点流程
+        new-activity: 新活动
+        activity-details: 活动详情
+        logic-stack: 逻辑栈
+        add-logic: 添加逻辑条件
+        select-field: 选择字段
+        select-operator: 选择运算符
+        enter-value: 输入比较值
+        no-logic: 未应用逻辑条件
+    details-editor:
+        success: 已安装
+        key-text: 将此键传入您的订单类型以使用此配置配置订单。
+        namespace-text: 此扩展的唯一命名空间。
+        id: 扩展ID
+        id-text: 此扩展的唯一ID。
+        version: 扩展版本
+        version-text: 此扩展的版本。
+        clone: 克隆配置
+        uninstall: 卸载配置
+        delete: 删除配置
+    entities-editor:
+        warning-message: 未输入元数据字段键名。
+        title: 实体
+        message: 实体配置允许您定义可为此订单类型选择的不同实体类型。这些应用作模板以加快手动订单创建。
+        type: 实体类型
+        add-meta: 添加元数据字段
+    fields-editor:
+        text-field: 文本字段
+        boolean: 布尔值
+        boolean-text: 允许用户通过复选框切换真假属性
+        dropdown: 下拉选择
+        dropdown-text: 允许用户从下拉选项中选择
+        datetime: 日期时间选择器
+        datetime-text: 允许用户选择日期和时间
+        port: 港口选择器
+        port-text: 允许用户选择港口
+        vessel: 船舶选择器
+        vessel-text: 允许用户选择船舶
+        warning-message: 未输入组名。
+        field-title: 元数据字段
+        new-field: 新自定义字段
+        new-custom-field: 新自定义字段组
+        field-text: 元数据字段配置允许您定义将应用于订单的自定义输入字段。
+        custom-field-group: 自定义字段组
+        default-field: 默认字段
+        custom-field: 自定义字段
+        type: 字段类型
+        select-type: 选择字段类型
+        add-option: 添加选项
+    select-message: 选择要修改的订单配置，或点击"新建配置"创建新订单配置。
+    new-config: 新建配置
+    loading-configuration: 正在加载您的订单配置...
+    select-order: 选择订单配置
+    save-changes: 保存更改
+    details: 详情
+    fields: 自定义字段
+    flow: 活动流程
+    entities: 实体
+
+order-list-overlay:
+    search: 搜索订单...
+    selected: 已选
+    assign: 分配给司机...
+    cancel: 取消订单...
+    delete: 删除订单...
+    dispatch: 派发订单...
+    actions: 操作
+    create-order: 创建新订单...
+    create-fleet: 创建新车队...
+    active-orders: 活跃订单
+    unassigned-orders: 未分配订单
+
+route-list:
+    expand: 点击展开
+    collapse: 点击折叠
+    more-waypoints: 更多航点
+
+settings:
+    avatar-management: 头像管理
+    custom-fields: 自定义字段
+    notifications:
+        fleet-ops-notification-settings: 车队运营通知设置
+        fleet-ops-notifications: 车队运营通知
+        configure-notifications: 配置通知
+        select-notifiables: 选择通知对象
+    routing:
+        fleet-ops-routing-settings: 车队运营路线设置
+        fleet-ops-routing: 车队运营路线
+        configure-routing: 配置路线
+        select-routing-service: 选择路线服务
+        routing-service: 路线服务
+        routing-service-help-text: 选择负责在地图上计算和绘制路线的服务。
+        select-routing-distance-unit: 选择路线距离单位
+        routing-distance-unit: 路线距离单位
+        routing-distance-unit-help-text: 用于计算距离和路线的单位。
+    map:
+        fleet-ops-map-settings: 车队运营地图设置
+        fleet-ops-map: 车队运营地图
+        configure-map: 配置地图
+        map-provider: 地图提供商
+        map-provider-help-text: 选择用于渲染实时运营地图的地图引擎。Leaflet使用OpenStreetMap瓦片，无需API密钥。Google Maps需要有效的Google Maps JavaScript API密钥。
+        select-map-provider: 选择地图提供商
+        google-maps-map-type: 地图类型
+        google-maps-map-type-help-text: Google Maps激活时显示的默认地图样式。
+        select-map-type: 选择地图类型
+        show-traffic-layer: 显示交通图层
+        show-traffic-layer-help-text: 在Google Maps视图上叠加实时交通状况。
+        show-transit-layer: 显示公交图层
+        show-transit-layer-help-text: 在Google Maps视图上叠加公共交通路线。
+        settings-saved: 地图设置保存成功。
+        settings-save-failed: 地图设置保存失败，请重试。
+    navigator-app:
+        navigator-app-settings: 导航应用设置
+    payments:
+        payments: 付款
+        payment-settings: 付款设置
+        account-not-setup-for-payments: 您的账户尚未设置收款。
+        to-accept-payments: 要接受和处理付款，您必须通过Stripe完成入驻流程。
+        system-stripe-not-setup: 系统目前无法接受或处理付款，请联系系统管理员配置付款。
+        loading-settings: 正在加载付款设置...
+        onboard:
+            header-title: 付款入驻
+            title-completed: 入驻已成功完成！
+            title-incomplete: 完成此入驻流程以接受付款。
+            subtitle-completed: 入驻成功，您现在可以接受和接收来自客户和第三方的付款。
+            subtitle-incomplete: 必须完成此入驻流程才能为订单接受付款。
+            button-continue: 继续
+            button-start: 立即开始入驻
+            button-in-progress: 入驻进行中
+    scheduling:
+        scheduling-settings: 排班设置
+        materialisation: 物化
+        horizon-days: 计划范围（天）
+        horizon-days-help: 应用计划模板时提前多少天生成班次项目。
+        default-shift-duration: 默认班次时长（小时）
+        default-shift-duration-help: 未指定结束时间时班次的默认小时数。
+        hours-of-service: 工作时间限制
+        hos-daily-limit: 每日驾驶限制（小时）
+        hos-daily-limit-help: 司机一天内允许驾驶的最大小时数。
+        hos-weekly-limit: 每周驾驶限制（小时）
+        hos-weekly-limit-help: 司机在滚动7天周期内允许驾驶的最大小时数。
+        behaviour: 行为
+        auto-activate-schedule: 自动激活计划
+        auto-activate-schedule-help: 创建第一个班次时自动将计划从草稿转为活跃状态。
+        notify-drivers: 班次变更时通知司机
+        notify-drivers-help: 班次创建、更新或删除时向司机发送推送通知。
+        schedule-templates: 可重用计划模板
+        no-templates: 尚未创建可重用模板。
+        new-template: 新建模板
+        edit-template: 编辑模板
+        delete-template: 删除模板
+        delete-template-confirm: 确定要删除模板"{name}"吗？这不会影响现有计划。
+        template-deleted: 模板删除成功。
+        settings-saved: 排班设置已保存。
+maintenance-schedule:
+    actions:
+        trigger-now: 立即触发工单
+        pause: 暂停计划
+        resume: 恢复计划
+work-order:
+    actions:
+        view: 查看工单
+        edit: 编辑工单
+        delete: 删除工单
+maintenance:
+    actions:
+        view: 查看维护记录
+        edit: 编辑维护记录
+        delete: 删除维护记录
+equipment:
+    actions:
+        view: 查看设备
+        edit: 编辑设备
+        delete: 删除设备
+part:
+    actions:
+        view: 查看配件
+        edit: 编辑配件
+        delete: 删除配件
+
+orchestrator:
+    settings-title: 调度编排设置
+    engine-settings: 分配引擎
+    active-engine: 活动分配引擎
+    active-engine-help: 选择用于将订单分配给司机和车辆的分配引擎。
+    auto-allocate-on-create: 创建时自动分配
+    auto-allocate-on-create-label: 创建新订单时自动运行分配。
+    auto-reallocate-on-complete: 送达完成后自动重新分配
+    auto-reallocate-on-complete-label: 送达完成后重新运行分配以填补释放的运力。
+    constraint-settings: 分配约束
+    max-travel-time: 最大行驶时间（秒）
+    max-travel-time-help: 司机可被分配的最大行驶时间（秒）。设为0表示无限制。
+    balance-workload: 平衡工作负载
+    balance-workload-label: 在可用司机和车辆之间均匀分配订单。
+    settings-saved: 调度编排设置已保存。
+    workbench-title: 调度编排工作台
+    unassigned-orders: 未分配订单
+    no-unassigned-orders: 没有未分配订单 — 全部完成！
+    run-allocation: 运行编排
+    running: 运行中…
+    plan-ready: 计划就绪 — 查看并提交。
+    commit-plan: 提交计划
+    discard-plan: 丢弃
+    committed: '编排已提交 — {count}个订单已分配。'
+    committed-badge: 计划已提交
+    overridden: 已覆盖
+    on-shift: 值班中
+    empty-state-title: 尚无编排计划
+    empty-state-body: 点击"运行编排"为未分配订单生成优化的分配计划。
+    unassigned-warning: 部分订单无法分配 — 车辆运力不足或无司机值班。
+    run-orchestration: 运行编排
+    options: 选项
+    mode: 模式
+    mode-allocate: 分配订单
+    mode-optimize: 优化路线
+    engine: 引擎
+    allocation-strategy: 分配策略
+    allocation-strategy-route-aware: 路线+运力
+    allocation-strategy-capacity-only: 仅运力
+    vehicle-packing: 车辆装载
+    vehicle-packing-minimize-vehicles: 最少车辆数
+    vehicle-packing-balanced: 均衡分配
+    respect-skills: 尊重技能要求
+    respect-capacity: 尊重运力限制
+    return-to-depot: 返回仓库
+    unassigned-count: '未分配：'
+    clear: 清除
+    search-orders: 搜索订单…
+    filter-all: 全部
+    filter-scheduled: 已安排
+    filter-urgent: 紧急
+    filter-today: 今天
+    filter-unassigned: 未分配
+    filter-imported: 已导入
+    advanced-filters: 高级筛选
+    filter-country: 国家
+    filter-type: 订单类型
+    filter-status: 状态
+    filter-date: 计划日期
+    filter-country-placeholder: 所有国家
+    filter-type-placeholder: 所有类型
+    filter-status-placeholder: 所有状态
+    filter-date-placeholder: 任意日期
+    clear-filters: 清除筛选
+    no-address: 无地址
+    selected: 已选
+    clear-selection: 清除
+    show-orders: 显示订单池
+    hide-orders: 隐藏订单池
+    show-drivers: 显示资源
+    hide-drivers: 隐藏资源
+    available-drivers: 可用司机
+    available-vehicles: 可用车辆
+    no-available-drivers: 当前无可用司机。
+    no-available-vehicles: 当前无可用车辆。
+    no-search-results: 没有匹配搜索的结果。
+    search-drivers: 搜索司机...
+    search-vehicles: 搜索车辆...
+    no-position: 无位置
+    filter-online: 在线
+    filter-offline: 离线
+    filter-on-shift: 值班中
+    filter-on-job: 执行中
+    filter-active: 活跃
+    filter-no-driver: 无司机
+    proposed-routes: 建议路线
+    stops: 停靠点
+    route: 路线
+    drivers-selected: 个司机已选
+    vehicles-selected: 个车辆已选
+    drop-orders-here: 将订单拖放至此
+    import-orders: 导入订单
+    import-step-upload: 上传
+    import-step-map: 映射列
+    import-step-preview: 预览并导入
+    drop-file-here: 将CSV或Excel文件拖放至此
+    or: 或
+    browse-file: 浏览文件
+    accepted-formats: '支持：.csv, .xlsx, .xls'
+    remove-file: 移除文件
+    download-template: 下载导入模板
+    download-template-desc: 使用我们的模板确保数据正确导入。
+    download: 下载
+    next: 下一步
+    back: 上一步
+    map-columns-title: 映射列
+    map-columns-desc: '映射中的列'
+    col-target-field: 目标字段
+    col-your-spreadsheet: 您的电子表格
+    mapped: 已映射
+    mapping-required-hint: '继续之前必须映射送达街道1。'
+    select-column: '— 跳过 —'
+    data-preview: '前3个订单预览：'
+    preview-import: 预览导入
+    preview-desc: '{count}个订单准备导入'
+    errors: 个错误
+    all-rows-valid: 所有行有效
+    validation-warning: '{count}个订单有错误将被跳过。'
+    import-confirm: 确认导入
+    importing: '导入中…'
+    col-pickup: 取货
+    col-dropoff: 送达
+    col-scheduled: 计划
+    col-weight: 重量
+    col-customer: 客户
+    col-status: 状态
+    col-preview-ref: 编号/ID
+    col-preview-type: 类型
+    col-preview-facilitator: 协调方
+    col-preview-vehicle: 车辆
+    col-preview-driver: 司机
+    col-preview-entities: 项目
+    col-preview-multi-stop: '{count}个停靠点'
+    col-preview-pickup-dropoff: 取货和送达
+    col-preview-pickup-dropoff-stops: '取送+{count}个停靠点'
+    error: 错误
+    valid: 有效
+    import-success: '{count}个订单导入成功。'
+    no-valid-rows: 没有有效订单可导入。
+    invalid-file-type: '请上传.csv、.xlsx或.xls文件。'
+    parse-error: 无法解析文件，请检查格式。
+    read-error: 无法读取文件。
+    empty-file: 文件似乎为空。
+    missing-dropoff: 送达街道1为必填项。
+    stops-count: '{count}个停靠点'
+    pickup: 取货
+    dropoff: 送达
+    scheduled: 已安排
+    customer: 客户
+    driver-assigned: 已分配司机
+    vehicle-assigned: 已分配车辆
+    no-vehicle-assigned: 未分配车辆
+    no-driver-assigned: 未分配司机
+    created: 已创建
+    phases: 阶段
+    phases-description: 组合多步骤编排运行。每个阶段按顺序运行特定模式。
+    add-phase: 添加阶段
+    no-phases: 未配置阶段。添加阶段开始。
+    phase-n: '阶段{n}'
+    phase-label: 阶段标签
+    save-phase: 保存阶段
+    select-phase-to-edit: 选择阶段编辑其设置。
+    run-phases: '运行{count}个阶段'
+    include-order-statuses: 包含订单状态
+    constraints: 约束
+    auto-commit: 阶段后自动提交
+    mode-assign-vehicles: 分配车辆
+    mode-assign-drivers: 分配司机
+    mode-optimize-routes: 优化路线
+    status-created: 已创建
+    status-dispatched: 已派发
+    status-started: 已开始
+    card-fields: 卡片字段
+    card-fields-description: 配置工作台中订单卡片上显示的字段。字段按订单配置分组，您可以为每种订单类型定制视图。
+    card-fields-saved: 订单卡片字段已保存。
+    save-card-fields: 保存卡片字段
+    standard-fields: 标准字段
+    standard-fields-description: 无论订单类型如何，这些字段出现在每个订单卡片上。
+    config-fields-description: '{name}订单的自定义字段。'
+    meta-fields: 元数据字段
+    meta-fields-description: 集成推送的自由格式元数据键。
+    no-custom-fields: 此订单配置未定义自定义字段。
+    field-tracking: 追踪号
+    field-status: 状态
+    field-scheduled-at: 计划时间
+    field-customer: 客户
+    field-type: 类型
+    field-notes: 备注
+    field-priority: 优先级
+    field-dropoff: 送达地址
+    field-pickup: 取货地址
+    filter-available: 可用
+    vehicle: 车辆
+    expand-all: 全部展开
+    tab-routes: 路线
+    tab-timeline: 时间线
+    collapse-all: 全部折叠
+    collapse-route: 折叠路线
+    expand-route: 展开路线
+    no-plan: 运行编排以查看建议计划。
+    unassigned-description: 这些订单无法分配。它们将保留在队列中等待重新分配。
+    unassigned: 未分配
+    vehicles: 车辆
+    drivers: 司机
+    orders: 订单
+    cancel: 取消
+    no-vehicles: 未找到车辆。
+    no-drivers: 未找到司机。
+    no-orders: 未找到订单。
+    expand-panel: 展开面板
+    collapse-panel: 折叠面板
+    run-failed-title: 未返回分配结果
+    try-again: 重试
+    change-resources: 更改资源
+    no-assignments-returned: 编排器无法分配任何订单。请检查车辆是否有足够运力且司机是否在值班。
+    stop-type-pickup: 取货
+    stop-type-dropoff: 送达
+    pod-required: 签收
+    no-pod: 无签收

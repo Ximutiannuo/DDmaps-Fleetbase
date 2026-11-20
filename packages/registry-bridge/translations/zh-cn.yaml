@@ -1,0 +1,143 @@
+registry-bridge:
+  extension-name: 注册中心
+  common:
+    install: 安装
+    uninstall: 卸载
+    approve: 批准
+    reject: 拒绝
+    details: 详情
+    publish: 发布
+    about: 关于
+    about-extension: 关于{extensionName}
+  component:
+    extension-details-modal:
+      extension: 扩展
+      author: 作者
+      description: 描述
+      overview: 概览
+      details: 详情
+      version: 版本
+      updated: 更新时间
+      website: 网站
+      self-managed: 自管理
+      self-managed-help-text: 自管理扩展专为在自己的服务器上托管Fleetbase的用户设计，不在云端/SaaS环境中使用。这些扩展需要手动安装和配置。如果您使用的是自托管实例，可以使用这些扩展添加额外功能。但云端/SaaS用户无法使用。
+      self-hosted-install: 自托管安装
+      self-hosted-install-help-text: 查看自托管安装说明。
+    extension-pending-publish-viewer:
+      content-panel-title: 待发布扩展
+      focused-extension-title: >
+        {extensionName} 详情
+      download-bundle: 下载包
+      view-details: 查看详情
+      publish: 发布
+      no-extensions-awaiting-publish: 没有待发布的扩展
+    extension-reviewer-control:
+      content-panel-title: 待审核扩展
+      focused-extension-title: >
+        {extensionName} 详情
+      approve-confirm-title: 确定要批准此扩展吗？
+      approve-confirm-body: 此扩展应在开发和测试环境中充分测试，并进行合规性和安全性检查。批准后需要手动发布到注册中心。
+      decline-confirm-title: 确定要拒绝此扩展吗？
+      decline-confirm-body: 此扩展将被拒绝，但作者有机会进行修正并重新提交审核。
+      download-bundle: 下载包
+      view-details: 查看详情
+      approve: 批准
+      reject: 拒绝
+      no-extensions-awaiting-review: 没有待审核的扩展
+  installed:
+    title: 已安装扩展
+  purchased:
+    title: 已购买扩展
+  developers:
+    payments:
+      manage-account: 管理收款账户
+      no-account-warning: 您必须完成Stripe入驻流程才能访问账户设置。
+      settings:
+        title: 管理收款账户
+        description: 管理您的Stripe账户详情，包括商业信息和用于接收付款的银行账户。
+        loading: 正在加载账户管理...
+    extensions:
+      extensions: 扩展
+      create-new-extension: 创建新扩展
+      new-extension: 新扩展
+      extension: 扩展
+      submission: 提交
+      details: 详情
+      bundles: 包
+      monetize: 变现
+      explore:
+        explore-extensions: 浏览扩展
+        explore-category-extensions: >
+          {categoryName} 扩展
+      extension-form:
+        package-name: 包名
+        package-json-name: package.json 名称
+        composer-json-name: composer.json 名称
+        submission-success-message: 扩展已提交，正在等待审核。
+        extension-category: 分类
+        extension-category-help-text: 选择用户可以找到您的扩展的分类。
+        extension-select-category: 选择分类
+        extension-name: 扩展名称
+        extension-icon: 扩展图标
+        upload-extension-icon: 上传图标
+        extension-description: 描述
+        extension-tags: 标签
+        extension-add-tags: 添加关键词和标签
+        extension-promotional-text: 推广文案
+        details-content-block: 扩展详情
+        extension-listing-details: 列表详情
+        extension-subtitle: 副标题
+        extension-website-url: 网站链接
+        extension-repo-url: 代码仓库链接
+        extension-support-url: 支持链接
+        extension-privacy-policy-url: 隐私政策链接
+        extension-tos-url: 服务条款链接
+        extension-primary-language: 主要语言
+        extension-version: 版本
+        extension-copyright: 版权
+        extension-copyright-help-text: 输入扩展的版权声明，通常包括年份和版权所有者或公司名称。
+        extension-payment-required: 需要付费
+        extension-payment-required-help-text: 决定用户是否需要付费或订阅才能安装此扩展。
+        extension-price: 价格
+        extension-price-help-text: 指定扩展的常规价格。这是用户购买或使用扩展的标准费用。
+        extension-sale-price: 优惠价
+        extension-sale-price-help-text: 如果扩展目前以折扣价提供，请在此输入优惠价。应低于常规价格。
+        extension-subscription-required: 需要订阅
+        extension-subscription-required-help-text: 决定用户是否必须订阅才能安装和使用此扩展。
+        extension-subscription-billing-period: 订阅计费周期
+        extension-subscription-billing-period-placeholder: 选择计费周期
+        extension-subscription-billing-period-help-text: 指定订阅的计费周期，例如按月、按季、按年或其他自定义周期。
+        extension-subscription-amount: 订阅金额
+        extension-subscription-amount-help-text: 输入订阅的标准收费金额，应反映任何折扣或分级定价调整前的常规价格。
+        extension-subscription-model: 订阅模式
+        extension-subscription-model-help-text: 决定订阅定价模式的类型，包括固定费率、分级和按使用量订阅。
+        extension-subscription-tiers: 订阅等级
+        extension-subscription-tiers-help-text: 如果适用，定义订阅的不同定价等级，包括等级级别、每个等级的定价以及特定功能或限制。
+        extension-name-help-text: 输入扩展的官方名称，这将作为用户的主要标识符显示。
+        extension-icon-help-text: 上传代表扩展的图标，此图标将用于列表和搜索结果。
+        extension-description-help-text: 提供扩展功能和主要特性的详细描述，帮助用户了解扩展的功能。
+        extension-tags-help-text: 添加与扩展相关的关键词和标签，帮助用户通过搜索找到它。
+        extension-promotional-text-help-text: 编写推广文案以突出扩展的独特卖点，此文本将用于营销或推荐区域。
+        extension-subtitle-help-text: 提供简短的副标题，为扩展提供额外的上下文或信息。
+        extension-website-url-help-text: 输入扩展官方网站或产品页面的链接以获取更多信息。
+        extension-repo-url-help-text: 提供扩展代码仓库的链接（如GitHub、GitLab），如适用。
+        extension-support-url-help-text: 指定用户可以获取支持、提问或报告扩展问题的链接。
+        extension-privacy-policy-url-help-text: 链接到隐私政策文档，详细说明用户数据的处理和保护方式。
+        extension-tos-url-help-text: 链接到服务条款文档，用户在使用扩展前必须同意。
+        extension-primary-language-help-text: 指定扩展开发或可用的主要语言。
+        extension-version-help-text: 指明扩展的当前版本，这对于跟踪更新和兼容性很重要。
+        extension-payment-details: 付款详情
+        extension-screenshots: 截图
+        upload-screenshots: 上传截图
+        submit-for-review: 提交审核
+        extension-bundle: 扩展包
+        extension-upload-bundle: 上传扩展包
+        details: 详情
+        bundle-id: 包ID
+        bundle-id-help-text: 当前发布包的标识符。
+        extension-id: 扩展ID
+        extension-id-help-text: 此扩展的唯一标识符。
+        bundles: 包
+        upload-new-bundle: 上传新包
+        self-managed: 自管理
+        self-managed-help-text: 如果您的模块仅适用于自托管实例，请启用此选项。选择此项后，该模块将无法在Fleetbase的云端/SaaS版本上安装，必须由用户在自己的服务器上手动安装。
